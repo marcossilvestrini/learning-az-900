@@ -17,7 +17,9 @@
 <p align="center">
 <strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://github.com/marcossilvestrini/learning-az-900">Main Page</a>
+    <a href="https://marcossilvestrini.github.io/learning-az-900/">Main Page</a>
+    -
+    <a href="https://github.com/marcossilvestrini/learning-az-900">Code Page</a>
     -
     <a href="https://github.com/marcossilvestrini/learning-az-900/issues">Report Bug</a>
     -
@@ -41,13 +43,8 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li>
-      <a href="#getting-started">Topics of Course</a>
-      <ul>
-        <li><a href="#prerequisites">Topic foo</a></li>
-        <li><a href="#installation">Topic bar</a></li>
-      </ul>
-    </li>
+    <li><a href="#getting-started">Azure CLI</a>
+    <li><a href="#getting-started">Cloud in Azure</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -80,7 +77,7 @@ and how to install them.
 * Virtual Box and extension
 * Vagrant
 
-<a name="instalation"></a>
+<a name="installation"></a>
 
 ### Installation
 
@@ -109,19 +106,91 @@ Use this repository for get learning about AZ-900 exam
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<a name="topic-foo"></a>
+<a name="azurecli"></a>
 
-## Topic foo
+## Azure CLI
 
-<a name="subtopic-foo"></a>
+### Install
 
-### Subtopic foo
+Windows
 
-Foo bar beer
+```powershell
+winget install -e --id Microsoft.AzureCLI
+```
 
+Linux
 
-<p align="right">(<a href="#subtopic-foo">back to sub topic foo</a>)</p>
-<p align="right">(<a href="#topic-foo">back to topic foo</a>)</p>
+```sh
+#https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=dnf
+
+# Debian
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+# RPM
+
+## Import the Microsoft repository key.
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+## RHEL 9 or CentOS Stream 9
+sudo dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
+
+##  RHEL 8 or CentOS Stream 8
+sudo dnf install -y https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm
+
+## Install package
+sudo dnf install azure-cli
+```
+
+<p align="right">(<a href="#azurecli">back to azure cli</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="cloud-azure"></a>
+
+## About Cloud in Azure
+
+### Infrastructure as a Service (IaaS)
+
+IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.
+
+Infrastructure is the backbone that supports a computer system, the servers and storage, networks, security, and data centers. Traditionally, these aspects of computing would be the responsibility of an organization’s own IT department, housed and managed under its own roof but with IaaS, organizations now have the option to have a vendor provide and manage these things on their end.
+
+#### IaaS on Azure
+
+With Azure’s IaaS offering you outsource all your network and computing needs to Microsoft, removing all infrastructure from your own servers and basing it all at Microsoft’s end. All infrastructure is managed on your behalf, leaving you to purchase, install, configure, and operate the software that runs on it, such as operating systems, apps, and middleware.
+
+Azure offers a massive range of IaaS facilities depending on the needs of your business, from compute and networking to security and storage, including Container Service and Virtual Machines through which you can host websites, store and backup data, develop and test environments, build web apps, and run high-performance computing.
+
+Main benefit is that organizations that use IaaS have more freedom to access an IT environment that suits their needs and can customize it as they want in a matter of “mouse clicks” without losing time to purchase, install and configure physical servers or hardware. It also enables companies to get rid of the hassle of having to operate infrastructure and hardware of their own.
+
+### Platform as a Service (PaaS)
+
+A PaaS solution is the middle layer, requiring less user management without access to the operating system. PaaS gives businesses the digital platform to develop and deploy their own apps and services, without the need to maintain server space, programming software, and security protocols internally.
+
+It is faster, cheaper, and simpler for businesses to build their products and services, and scale their resources as needed without significant financial impact if they choose PaaS.
+
+#### PaaS on Azure
+
+If you choose PaaS on Azure, you will find plenty of services to help you implement a cloud-powered development platform. App Services, Azure Search, and Azure CDN, Azure will offer everything you need to deliver cloud applications on a pay-as-you-go basis, from the smallest web apps to enterprise-level software.
+
+Azure’s PaaS offerings give developers total control over their application, allowing them the freedom to work on building, safe in the knowledge that things like operating system patches or load balancing will just work. With services like Azure Functions, businesses can take advantage of PaaS power without having to worry about server configuration or scaling, which is automatic.
+
+### Software as a Service (SaaS)
+
+A SaaS solution requires the least management, Microsoft being responsible for managing everything, while you just use the software. Software is delivered via the internet, rather than being downloaded onto individual devices. and you are responsible for configuring the SaaS solution such as Outlook email, calendar, and office tools (such as Microsoft Office 365).
+
+With SaaS, every aspect of the software’s hosting, setup, and maintenance is handled by its vendor. Also, all your data, files, and usage history is stored at the vendor’s end, within a multi-tenancy cloud. As a result, the software is accessible from anywhere, on any device, and data is always backed up to a centralized location. Don’t worry, your information can’t be seen or accessed by other software users.
+
+All you need to do to access it is log in to an app or browser and use the software in the same way as you would a traditional desktop application installed on your own computer.
+
+#### SaaS on Azure
+
+Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office 365 are all built and hosted on Azure. Azure can be also used both to host apps you’ve created yourself, beside accessing other Microsoft SaaS services.
+
+One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.
+
+**Font:** https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference/
+
+<p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
@@ -155,6 +224,7 @@ Project Link: [https://github.com/marcossilvestrini/learning-az-900](https://git
 ## Acknowledgments
 
 * [Certification details](https://learn.microsoft.com/en-us/certifications/azure-fundamentals/)
+* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
 * [Alura Course](https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals)
 * [Simulated](https://www.itexams.com/exam/AZ-900)
 
