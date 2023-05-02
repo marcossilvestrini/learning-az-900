@@ -1,0 +1,24 @@
+{
+    "cSpell.words": [
+        "apachectl",
+        "htpasswd",
+        "itexam",
+        "loadbalance",
+        "LPIC",
+        "nameserver",
+        "noout",
+        "passout",
+        "Paulo",
+        "pstree",
+        "Roadmap",
+        "silvestrini",
+        "SSLCA"
+    ],
+    "remote.SSH.remoteServerListenOnSocket": false,
+    "remote.SSH.defaultForwardedPorts": [
+
+    ],
+    "github-actions.workflows.pinned.workflows": [
+        ".github/workflows/check-http-stack.yml"
+    ]
+}
