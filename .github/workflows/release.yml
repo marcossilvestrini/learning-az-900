@@ -26,4 +26,4 @@ jobs:
             - Add new examples
             - Update files
           draft: false
-          prerelease: false
+          prerelease: false   
