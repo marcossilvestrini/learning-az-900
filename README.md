@@ -42,9 +42,12 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#getting-started">Azure CLI</a>
-    <li><a href="#getting-started">Cloud in Azure</a>
-    <li><a href="#getting-started">Azure Marketplace</a>
+    <li><a href="#azurecli">Azure CLI</a>
+    <li><a href="#cloud-azure">Cloud in Azure</a>
+    <li><a href="#azure-marketplace">Azure Marketplace</a>
+    <li><a href="#azure-pricing">Azure Pricing</a>
+    <li><a href="#azure-subscription">Azure Subscription</a>
+    <li><a href="#azure-support">Azure Support</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
