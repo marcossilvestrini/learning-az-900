@@ -29,22 +29,20 @@ jobs:
         uses: fifsky/html-to-pdf-action@master
         with:
           htmlFile: ./index.html
-          outputFile: ./az900-book.pdf
-          
+          outputFile: ./az900-book.pdf          
           pdfOptions: '{"format": "A4", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}}'          
       - run: sudo chmod 777 az900-book.pdf
       - run: /usr/bin/git config --global user.email "marcos.silvestrini@gmail.com"
       - run: /usr/bin/git config --global user.name "marcossilvestrini"
-      - run: /usr/bin/git add az900-book.pdf
-      - run: /usr/bin/git commit -m "Add curriculum"
+      - run: /usr/bin/git add .
+      - run: /usr/bin/git commit -m "Deploy pdf and html files"
       - run: /usr/bin/git push origin main
       
-
-      - name: Upload artifacts        
-        uses: actions/upload-artifact@v3
-        with:
-          name: az900-book
-          path: ./az900-book.pdf
+      # - name: Upload artifacts        
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: az900-book
+      #     path: ./az900-book.pdf
 
       # - name: Download Artefacts
       #   uses: actions/download-artifact@v3
