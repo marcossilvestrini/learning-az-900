@@ -47,7 +47,5 @@ jobs:
       # - name: Download Artefacts
       #   uses: actions/download-artifact@v3
       #   with:
-      #     name: right-resume
-            
-      - name: Display structure of downloaded files
-        run: sudo ls -R
+      #     name: right-resume          
+      
