@@ -19,6 +19,23 @@
       }
     },
     {
+      "label": "Install Azure Powershell Module",
+      "type": "shell",
+      "command": "",
+      "windows": {
+        "command": [
+          "if(! (Get-Module -Name AzureRM -ListAvailable)){Install-Module -Name Az -Repository PSGallery -Force}"
+        ]
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      } 
+    },
+    {
       "label": "Cleanup slack channel",
       "type": "shell",
       "command": "python -u ../slack/clean_app-github.py",

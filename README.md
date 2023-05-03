@@ -144,6 +144,58 @@ sudo dnf install -y https://packages.microsoft.com/config/rhel/8/packages-micros
 sudo dnf install azure-cli
 ```
 
+### Important Commands
+
+```powershell
+
+# login account
+az login
+
+# list managment groups
+az account management-group list
+
+# list subscriptions \ accounts
+az account list
+
+# create subscription
+az account create
+
+# list resources
+az resource list
+az resource list --location 'eastus'
+az resource list --location 'eastus'
+
+# list resource groups
+az group list
+
+# create resource group
+az group create --location eastus --resource-group testazurecli
+
+# delete resource group
+az group delete --resource-group testazurecli
+az group delete -y --resource-group testazurecli
+
+# list virtual machines
+az vm list  --resource-group labs
+az vm show  --resource-group labs  --name 'lab-az900'
+
+# create virtual machine
+az vm create `
+--resource-group $groupName `
+--image $image `
+--name $vmName `
+--computer-name $vmName `
+--priority $priority `
+--admin-username $adminUsername  `
+--admin-password $adminPassword `
+--generate-ssh-keys `
+--authentication-type 'all' 
+
+# get vm public ip 
+az vm list-ip-addresses -g labs -n lab-az900
+
+```
+
 <p align="right">(<a href="#azurecli">back to azure cli</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -41,5 +41,5 @@ Function Install-CLI{
    Add-Content -Value "Install azure CLI.Please waiting..." -Path $logFunctions
    winget install -e --id Microsoft.AzureCLI  >>$logFunctions  
    If ($?){"Install CLI success!!!" >>$logFunctions}
-   Else{"Please check log." >>$logFunctions}
+   Else{"Please check log for details." >>$logFunctions}
 }
