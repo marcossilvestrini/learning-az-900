@@ -15,8 +15,7 @@
 ![202-450 Linux Engineer](images/azure-roadmap.jpg)
 
 <p align="center">
-<strong>Explore the docs »</strong></a>
-    <br />
+<strong>Explore the docs »</strong></a><br />
     <a href="https://marcossilvestrini.github.io/learning-az-900/">Main Page</a>
     -
     <a href="https://github.com/marcossilvestrini/learning-az-900">Code Page</a>
@@ -45,6 +44,7 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#getting-started">Azure CLI</a>
     <li><a href="#getting-started">Cloud in Azure</a>
+    <li><a href="#getting-started">Azure Marketplace</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -99,10 +99,10 @@ Use this repository for get learning about AZ-900 exam
 
 ## Roadmap
 
-* [ ] Create repository
-* [ ] Create examples about Exam
-* [ ] Create github action for automation tasks
-* [ ] Upload simulated itexam
+* [x] Create repository
+* [x] Create examples about Exam
+* [x] Create github action for automation tasks
+* [x] Upload simulated itexam
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -148,6 +148,8 @@ sudo dnf install azure-cli
 
 ## About Cloud in Azure
 
+<https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference>
+
 ### Infrastructure as a Service (IaaS)
 
 IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.
@@ -188,9 +190,73 @@ Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office
 
 One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.
 
-**Font:** https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference/
+
+
+### Azure Global Infrastructure
+
+<https://datacenters.microsoft.com/globe/explore>
+
+* Geographic
+  * Region
+    * Availability Zone
+
+![Azure Regions](images/azure-regions.jpg)
 
 <p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="azure-marketplace"></a>
+
+## Azure Marketplace
+
+![Azure Marketplace](images/azure-marktplace.png)
+
+<p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Pricing
+
+<a name="azure-pricing"></a>
+
+### Compute
+
+* Pay as you go
+* Reserved
+* Spot
+
+### License
+
+* Included
+* Pay as you go
+* Azure Hybrid Benefic
+
+Example of Plain Migration
+
+![Azure Pricing](images/azure-pricing.png)
+
+
+<p align="right">(<a href="#azure-pricing">back to cloud azure-pricing</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Subscriptions
+
+<a name="azure-subscription"></a>
+
+<https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions>
+
+![Azure Resources](images/azure-subscriptions.jpg)
+
+<p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Support Plains
+
+<a name="azure-support"></a>
+
+
+![Azure Support](images/azure-support-plans.png)
+
+<p align="right">(<a href="#azure-support">back to cloud azure-support</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
@@ -223,12 +289,14 @@ Project Link: [https://github.com/marcossilvestrini/learning-az-900](https://git
 
 ## Acknowledgments
 
-* [Certification details](https://learn.microsoft.com/en-us/certifications/azure-fundamentals/)
+* [Azure Certification details](https://learn.microsoft.com/en-us/certifications/azure-fundamentals/)
+* [Azure Portal](https://portal.azure.com/)
+* [Azure Pricing](https://azure.microsoft.com/en-us/pricing/)
+* [Support Plains](https://azure.microsoft.com/en-us/support/plans/)
 * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
+* [AWS to Azure services comparison](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services)
 * [Alura Course](https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals)
 * [Simulated](https://www.itexams.com/exam/AZ-900)
-
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
