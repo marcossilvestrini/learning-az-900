@@ -194,13 +194,14 @@ customElements.define('markdown-style', MarkdownStyle);</script><markdown-style 
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#azurecli">Azure CLI</a>
-    </li><li><a href="#cloud-azure">Cloud in Azure</a>
+    <li><a href="#roadmap">Roadmap</a></li>    
+    <li><a href="#cloud-azure">Cloud in Azure</a>
     </li><li><a href="#azure-marketplace">Azure Marketplace</a>
     </li><li><a href="#azure-pricing">Azure Pricing</a>
     </li><li><a href="#azure-subscription">Azure Subscription</a>
-    </li><li><a href="#azure-support">Azure Support</a>
+    </li><li><a href="#azure-support">Azure Support</a>    
+    </li><li><a href="#azure-compute">Azure Compute Services</a>
+    </li><li><a href="#azurecli">Azure CLI</a>
     </li><li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -245,8 +246,97 @@ customElements.define('markdown-style', MarkdownStyle);</script><markdown-style 
       <li class="task-list-item"><input type="checkbox" checked disabled> Create github action for automation tasks</li>
       <li class="task-list-item"><input type="checkbox" checked disabled> Upload simulated itexam</li>
     </ul><p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <p><a name="azurecli"></a></p>
+    <h2 id="about-cloud-in-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#about-cloud-in-azure"><span class="octicon octicon-link"></span></a>About Cloud in Azure</h2>
+    <p><a name="cloud-azure"></a></p>
+    <p><a href="https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference">https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference</a></p>
+    <h3 id="infrastructure-as-a-service-iaas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#infrastructure-as-a-service-iaas"><span class="octicon octicon-link"></span></a>Infrastructure as a Service (IaaS)</h3>
+    <p>IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.</p>
+    <p>Infrastructure is the backbone that supports a computer system, the servers and storage, networks, security, and data centers. Traditionally, these aspects of computing would be the responsibility of an organization’s own IT department, housed and managed under its own roof but with IaaS, organizations now have the option to have a vendor provide and manage these things on their end.</p>
+    <h4 id="iaas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#iaas-on-azure"><span class="octicon octicon-link"></span></a>IaaS on Azure</h4>
+    <p>With Azure’s IaaS offering you outsource all your network and computing needs to Microsoft, removing all infrastructure from your own servers and basing it all at Microsoft’s end. All infrastructure is managed on your behalf, leaving you to purchase, install, configure, and operate the software that runs on it, such as operating systems, apps, and middleware.</p>
+    <p>Azure offers a massive range of IaaS facilities depending on the needs of your business, from compute and networking to security and storage, including Container Service and Virtual Machines through which you can host websites, store and backup data, develop and test environments, build web apps, and run high-performance computing.</p>
+    <p>Main benefit is that organizations that use IaaS have more freedom to access an IT environment that suits their needs and can customize it as they want in a matter of “mouse clicks” without losing time to purchase, install and configure physical servers or hardware. It also enables companies to get rid of the hassle of having to operate infrastructure and hardware of their own.</p>
+    <h3 id="platform-as-a-service-paas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#platform-as-a-service-paas"><span class="octicon octicon-link"></span></a>Platform as a Service (PaaS)</h3>
+    <p>A PaaS solution is the middle layer, requiring less user management without access to the operating system. PaaS gives businesses the digital platform to develop and deploy their own apps and services, without the need to maintain server space, programming software, and security protocols internally.</p>
+    <p>It is faster, cheaper, and simpler for businesses to build their products and services, and scale their resources as needed without significant financial impact if they choose PaaS.</p>
+    <h4 id="paas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#paas-on-azure"><span class="octicon octicon-link"></span></a>PaaS on Azure</h4>
+    <p>If you choose PaaS on Azure, you will find plenty of services to help you implement a cloud-powered development platform. App Services, Azure Search, and Azure CDN, Azure will offer everything you need to deliver cloud applications on a pay-as-you-go basis, from the smallest web apps to enterprise-level software.</p>
+    <p>Azure’s PaaS offerings give developers total control over their application, allowing them the freedom to work on building, safe in the knowledge that things like operating system patches or load balancing will just work. With services like Azure Functions, businesses can take advantage of PaaS power without having to worry about server configuration or scaling, which is automatic.</p>
+    <h3 id="software-as-a-service-saas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#software-as-a-service-saas"><span class="octicon octicon-link"></span></a>Software as a Service (SaaS)</h3>
+    <p>A SaaS solution requires the least management, Microsoft being responsible for managing everything, while you just use the software. Software is delivered via the internet, rather than being downloaded onto individual devices. and you are responsible for configuring the SaaS solution such as Outlook email, calendar, and office tools (such as Microsoft Office 365).</p>
+    <p>With SaaS, every aspect of the software’s hosting, setup, and maintenance is handled by its vendor. Also, all your data, files, and usage history is stored at the vendor’s end, within a multi-tenancy cloud. As a result, the software is accessible from anywhere, on any device, and data is always backed up to a centralized location. Don’t worry, your information can’t be seen or accessed by other software users.</p>
+    <p>All you need to do to access it is log in to an app or browser and use the software in the same way as you would a traditional desktop application installed on your own computer.</p>
+    <h4 id="saas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#saas-on-azure"><span class="octicon octicon-link"></span></a>SaaS on Azure</h4>
+    <p>Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office 365 are all built and hosted on Azure. Azure can be also used both to host apps you’ve created yourself, beside accessing other Microsoft SaaS services.</p>
+    <p>One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.</p>
+    <h3 id="azure-global-infrastructure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-global-infrastructure"><span class="octicon octicon-link"></span></a>Azure Global Infrastructure</h3>
+    <p><a href="https://datacenters.microsoft.com/globe/explore">https://datacenters.microsoft.com/globe/explore</a></p>
+    <ul>
+      <li>Geographic
+        <ul>
+          <li>Region
+            <ul>
+              <li>Availability Zone</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      <img src="images/azure-regions.jpg" alt="Azure Regions">
+    </p><p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+    <h2 id="azure-marketplace"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-marketplace"><span class="octicon octicon-link"></span></a>Azure Marketplace</h2>
+    <p><a name="azure-marketplace"></a></p>
+    <p>
+      <img src="images/azure-marktplace.png" alt="Azure Marketplace">
+    </p><p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+    <h2 id="azure-pricing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-pricing"><span class="octicon octicon-link"></span></a>Azure Pricing</h2>
+    <p><a name="azure-pricing"></a></p>
+    <h3 id="compute"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compute"><span class="octicon octicon-link"></span></a>Compute</h3>
+    <ul>
+      <li>Pay as you go</li>
+      <li>Reserved</li>
+      <li>Spot</li>
+    </ul>
+    <h3 id="osservices-license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#osservices-license"><span class="octicon octicon-link"></span></a>OS\Services License</h3>
+    <ul>
+      <li>Included</li>
+      <li>Pay as you go</li>
+      <li>Azure Hybrid Benefic</li>
+    </ul>
+    <p>Example of Plain Migration</p>
+    <p>
+      <img src="images/azure-pricing.png" alt="Azure Pricing">
+    </p><p align="right">(<a href="#azure-pricing">back to cloud azure-pricing</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+    <h2 id="azure-subscriptions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-subscriptions"><span class="octicon octicon-link"></span></a>Azure Subscriptions</h2>
+    <p><a name="azure-subscription"></a></p>
+    <p><a href="https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions">https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions</a></p>
+    <p>
+      <img src="images/azure-subscriptions.jpg" alt="Azure Resources">
+    </p><p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+    <h2 id="azure-support-plains"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-support-plains"><span class="octicon octicon-link"></span></a>Azure Support Plains</h2>
+    <p><a name="azure-support"></a></p>
+    <p>
+      <img src="images/azure-support-plans.png" alt="Azure Support">
+    </p><p align="right">(<a href="#azure-support">back to cloud azure-support</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+    <h2 id="azure-compute-services"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-compute-services"><span class="octicon octicon-link"></span></a>Azure Compute Services</h2>
+    <p><a name="about-the-project"></a></p>
+    <p>
+      <img src="images/azure-compute-services.png" alt="Azure Compute Services">
+    </p>
+    <h3 id="some-important-features"><a class="anchor" aria-hidden="true" tabindex="-1" href="#some-important-features"><span class="octicon octicon-link"></span></a>Some Important Features</h3>
+    <ul>
+      <li>Virtual Machine Scale Set</li>
+      <li>App Services</li>
+    </ul><p align="right">(<a href="#azure-compute">back to azure-compute</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
     <h2 id="azure-cli"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-cli"><span class="octicon octicon-link"></span></a>Azure CLI</h2>
+    <p><a name="azurecli"></a></p>
     <h3 id="install"><a class="anchor" aria-hidden="true" tabindex="-1" href="#install"><span class="octicon octicon-link"></span></a>Install</h3>
     <p>Windows</p>
     <pre class="language-powershell"><code class="language-powershell code-highlight"><span class="code-line line-number" line="1">winget install <span class="token operator">-</span>e <span class="token operator">--</span>id Microsoft<span class="token punctuation">.</span>AzureCLI
@@ -295,7 +385,7 @@ sudo dnf install azure-cli
 </span><span class="code-line line-number" line="2"><span class="token comment"># login account</span>
 </span><span class="code-line line-number" line="3">az login
 </span><span class="code-line line-number" line="4">
-</span><span class="code-line line-number" line="5"><span class="token comment"># list managment groups</span>
+</span><span class="code-line line-number" line="5"><span class="token comment"># list management groups</span>
 </span><span class="code-line line-number" line="6">az account management-<span class="token function">group</span> list
 </span><span class="code-line line-number" line="7">
 </span><span class="code-line line-number" line="8"><span class="token comment"># list subscriptions \ accounts</span>
@@ -342,7 +432,7 @@ sudo dnf install azure-cli
 # login account
 az login
 
-# list managment groups
+# list management groups
 az account management-group list
 
 # list subscriptions \ accounts
@@ -387,84 +477,6 @@ az vm list-ip-addresses -g labs -n lab-az900
 
 " class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre><p align="right">(<a href="#azurecli">back to azure cli</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <p><a name="cloud-azure"></a></p>
-    <h2 id="about-cloud-in-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#about-cloud-in-azure"><span class="octicon octicon-link"></span></a>About Cloud in Azure</h2>
-    <p><a href="https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference">https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference</a></p>
-    <h3 id="infrastructure-as-a-service-iaas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#infrastructure-as-a-service-iaas"><span class="octicon octicon-link"></span></a>Infrastructure as a Service (IaaS)</h3>
-    <p>IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.</p>
-    <p>Infrastructure is the backbone that supports a computer system, the servers and storage, networks, security, and data centers. Traditionally, these aspects of computing would be the responsibility of an organization’s own IT department, housed and managed under its own roof but with IaaS, organizations now have the option to have a vendor provide and manage these things on their end.</p>
-    <h4 id="iaas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#iaas-on-azure"><span class="octicon octicon-link"></span></a>IaaS on Azure</h4>
-    <p>With Azure’s IaaS offering you outsource all your network and computing needs to Microsoft, removing all infrastructure from your own servers and basing it all at Microsoft’s end. All infrastructure is managed on your behalf, leaving you to purchase, install, configure, and operate the software that runs on it, such as operating systems, apps, and middleware.</p>
-    <p>Azure offers a massive range of IaaS facilities depending on the needs of your business, from compute and networking to security and storage, including Container Service and Virtual Machines through which you can host websites, store and backup data, develop and test environments, build web apps, and run high-performance computing.</p>
-    <p>Main benefit is that organizations that use IaaS have more freedom to access an IT environment that suits their needs and can customize it as they want in a matter of “mouse clicks” without losing time to purchase, install and configure physical servers or hardware. It also enables companies to get rid of the hassle of having to operate infrastructure and hardware of their own.</p>
-    <h3 id="platform-as-a-service-paas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#platform-as-a-service-paas"><span class="octicon octicon-link"></span></a>Platform as a Service (PaaS)</h3>
-    <p>A PaaS solution is the middle layer, requiring less user management without access to the operating system. PaaS gives businesses the digital platform to develop and deploy their own apps and services, without the need to maintain server space, programming software, and security protocols internally.</p>
-    <p>It is faster, cheaper, and simpler for businesses to build their products and services, and scale their resources as needed without significant financial impact if they choose PaaS.</p>
-    <h4 id="paas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#paas-on-azure"><span class="octicon octicon-link"></span></a>PaaS on Azure</h4>
-    <p>If you choose PaaS on Azure, you will find plenty of services to help you implement a cloud-powered development platform. App Services, Azure Search, and Azure CDN, Azure will offer everything you need to deliver cloud applications on a pay-as-you-go basis, from the smallest web apps to enterprise-level software.</p>
-    <p>Azure’s PaaS offerings give developers total control over their application, allowing them the freedom to work on building, safe in the knowledge that things like operating system patches or load balancing will just work. With services like Azure Functions, businesses can take advantage of PaaS power without having to worry about server configuration or scaling, which is automatic.</p>
-    <h3 id="software-as-a-service-saas"><a class="anchor" aria-hidden="true" tabindex="-1" href="#software-as-a-service-saas"><span class="octicon octicon-link"></span></a>Software as a Service (SaaS)</h3>
-    <p>A SaaS solution requires the least management, Microsoft being responsible for managing everything, while you just use the software. Software is delivered via the internet, rather than being downloaded onto individual devices. and you are responsible for configuring the SaaS solution such as Outlook email, calendar, and office tools (such as Microsoft Office 365).</p>
-    <p>With SaaS, every aspect of the software’s hosting, setup, and maintenance is handled by its vendor. Also, all your data, files, and usage history is stored at the vendor’s end, within a multi-tenancy cloud. As a result, the software is accessible from anywhere, on any device, and data is always backed up to a centralized location. Don’t worry, your information can’t be seen or accessed by other software users.</p>
-    <p>All you need to do to access it is log in to an app or browser and use the software in the same way as you would a traditional desktop application installed on your own computer.</p>
-    <h4 id="saas-on-azure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#saas-on-azure"><span class="octicon octicon-link"></span></a>SaaS on Azure</h4>
-    <p>Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office 365 are all built and hosted on Azure. Azure can be also used both to host apps you’ve created yourself, beside accessing other Microsoft SaaS services.</p>
-    <p>One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.</p>
-    <h3 id="azure-global-infrastructure"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-global-infrastructure"><span class="octicon octicon-link"></span></a>Azure Global Infrastructure</h3>
-    <p><a href="https://datacenters.microsoft.com/globe/explore">https://datacenters.microsoft.com/globe/explore</a></p>
-    <ul>
-      <li>Geographic
-        <ul>
-          <li>Region
-            <ul>
-              <li>Availability Zone</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <p>
-      <img src="images/azure-regions.jpg" alt="Azure Regions">
-    </p><p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <p><a name="azure-marketplace"></a></p>
-    <h2 id="azure-marketplace"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-marketplace"><span class="octicon octicon-link"></span></a>Azure Marketplace</h2>
-    <p>
-      <img src="images/azure-marktplace.png" alt="Azure Marketplace">
-    </p><p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <h2 id="azure-pricing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-pricing"><span class="octicon octicon-link"></span></a>Azure Pricing</h2>
-    <p><a name="azure-pricing"></a></p>
-    <h3 id="compute"><a class="anchor" aria-hidden="true" tabindex="-1" href="#compute"><span class="octicon octicon-link"></span></a>Compute</h3>
-    <ul>
-      <li>Pay as you go</li>
-      <li>Reserved</li>
-      <li>Spot</li>
-    </ul>
-    <h3 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
-    <ul>
-      <li>Included</li>
-      <li>Pay as you go</li>
-      <li>Azure Hybrid Benefic</li>
-    </ul>
-    <p>Example of Plain Migration</p>
-    <p>
-      <img src="images/azure-pricing.png" alt="Azure Pricing">
-    </p><p align="right">(<a href="#azure-pricing">back to cloud azure-pricing</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <h2 id="azure-subscriptions"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-subscriptions"><span class="octicon octicon-link"></span></a>Azure Subscriptions</h2>
-    <p><a name="azure-subscription"></a></p>
-    <p><a href="https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions">https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions</a></p>
-    <p>
-      <img src="images/azure-subscriptions.jpg" alt="Azure Resources">
-    </p><p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-    <h2 id="azure-support-plains"><a class="anchor" aria-hidden="true" tabindex="-1" href="#azure-support-plains"><span class="octicon octicon-link"></span></a>Azure Support Plains</h2>
-    <p><a name="azure-support"></a></p>
-    <p>
-      <img src="images/azure-support-plans.png" alt="Azure Support">
-    </p><p align="right">(<a href="#azure-support">back to cloud azure-support</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
     <h2 id="contributing"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
     <p>
       Contributions are what make the open source community such an amazing place to
@@ -482,7 +494,7 @@ az vm list-ip-addresses -g labs -n lab-az900
       <li>Push to the Branch (<code>git push origin feature/AmazingFeature</code>)</li>
       <li>Open a Pull Request</li>
     </ol>
-    <h2 id="license-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license-1"><span class="octicon octicon-link"></span></a>License</h2>
+    <h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
     <ul>
       <li>This project is licensed under the MIT License * see the LICENSE.md file for details</li>
     </ul>
@@ -496,7 +508,9 @@ az vm list-ip-addresses -g labs -n lab-az900
       <li><a href="https://azure.microsoft.com/en-us/pricing/">Azure Pricing</a></li>
       <li><a href="https://azure.microsoft.com/en-us/support/plans/">Support Plains</a></li>
       <li><a href="https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli">Azure CLI</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli">Create Service Principal</a></li>
       <li><a href="https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services">AWS to Azure services comparison</a></li>
+      <li><a href="https://docs.microsoft.com/pt-br/azure/virtual-machines/sizes">Azure VM Size</a></li>
       <li><a href="https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals">Alura Course</a></li>
       <li><a href="https://www.itexams.com/exam/AZ-900">Simulated</a></li>
     </ul><p align="right">(<a href="#readme-top">back to top</a>)</p>
