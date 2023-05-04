@@ -38,11 +38,11 @@ jobs:
       - run: /usr/bin/git commit -m "Deploy pdf and html files"
       - run: /usr/bin/git push origin main
       
-      # - name: Upload artifacts        
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: az900-book
-      #     path: ./az900-book.pdf
+      - name: Upload artifacts        
+        uses: actions/upload-artifact@v3
+        with:
+          name: az900-book
+          path: ./az900-book.pdf
 
       # - name: Download Artefacts
       #   uses: actions/download-artifact@v3
