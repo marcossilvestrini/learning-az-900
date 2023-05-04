@@ -2,6 +2,7 @@
     "cSpell.words": [
         "apachectl",
         "azurecli",
+        "eastus",
         "htpasswd",
         "itexam",
         "loadbalance",
@@ -13,7 +14,8 @@
         "pstree",
         "Roadmap",
         "silvestrini",
-        "SSLCA"
+        "SSLCA",
+        "winget"
     ],
     "remote.SSH.remoteServerListenOnSocket": false,
     "remote.SSH.defaultForwardedPorts": [

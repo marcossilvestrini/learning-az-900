@@ -13,6 +13,10 @@ cd /home/vagrant || exit
 # Variables
 DISTRO=$(cat /etc/*release | grep -ws NAME=)
 
+# install Common Packages
+apt install -y nodejs npm
+apt install -y jq
+
 # Install Azure CLI
 
 ## Install packages
@@ -42,3 +46,22 @@ apt update -y && apt install -y powershell
 
 # Install Azure Powershell
 pwsh -Command "Install-Module -Name Az -Repository PSGallery -Force"
+
+# Install VScode
+apt-get install wget gpg apt-transport-https
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] \
+ https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+ rm -f packages.microsoft.gpg
+ apt update -y
+ sudo apt install -y code
+code --no-sandbox --user-data-dir /home/vagrant --install-extension ms-vscode.vscode-node-azure-pack
+
+# Install chrome
+wget -qO - https://dl.google.com/linux/linux_signing_key.pub |
+    gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" |
+    tee /etc/apt/sources.list.d/google-chrome.list
+apt update -y
+apt install -y google-chrome-stable

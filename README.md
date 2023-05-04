@@ -41,13 +41,14 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#azurecli">Azure CLI</a>
+    <li><a href="#roadmap">Roadmap</a></li>    
     <li><a href="#cloud-azure">Cloud in Azure</a>
     <li><a href="#azure-marketplace">Azure Marketplace</a>
     <li><a href="#azure-pricing">Azure Pricing</a>
     <li><a href="#azure-subscription">Azure Subscription</a>
-    <li><a href="#azure-support">Azure Support</a>
+    <li><a href="#azure-support">Azure Support</a>    
+    <li><a href="#azure-compute">Azure Compute Services</a>
+    <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -109,9 +110,134 @@ Use this repository for get learning about AZ-900 exam
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<a name="azurecli"></a>
+## About Cloud in Azure
+
+<a name="cloud-azure"></a>
+
+<https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference>
+
+### Infrastructure as a Service (IaaS)
+
+IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.
+
+Infrastructure is the backbone that supports a computer system, the servers and storage, networks, security, and data centers. Traditionally, these aspects of computing would be the responsibility of an organization’s own IT department, housed and managed under its own roof but with IaaS, organizations now have the option to have a vendor provide and manage these things on their end.
+
+#### IaaS on Azure
+
+With Azure’s IaaS offering you outsource all your network and computing needs to Microsoft, removing all infrastructure from your own servers and basing it all at Microsoft’s end. All infrastructure is managed on your behalf, leaving you to purchase, install, configure, and operate the software that runs on it, such as operating systems, apps, and middleware.
+
+Azure offers a massive range of IaaS facilities depending on the needs of your business, from compute and networking to security and storage, including Container Service and Virtual Machines through which you can host websites, store and backup data, develop and test environments, build web apps, and run high-performance computing.
+
+Main benefit is that organizations that use IaaS have more freedom to access an IT environment that suits their needs and can customize it as they want in a matter of “mouse clicks” without losing time to purchase, install and configure physical servers or hardware. It also enables companies to get rid of the hassle of having to operate infrastructure and hardware of their own.
+
+### Platform as a Service (PaaS)
+
+A PaaS solution is the middle layer, requiring less user management without access to the operating system. PaaS gives businesses the digital platform to develop and deploy their own apps and services, without the need to maintain server space, programming software, and security protocols internally.
+
+It is faster, cheaper, and simpler for businesses to build their products and services, and scale their resources as needed without significant financial impact if they choose PaaS.
+
+#### PaaS on Azure
+
+If you choose PaaS on Azure, you will find plenty of services to help you implement a cloud-powered development platform. App Services, Azure Search, and Azure CDN, Azure will offer everything you need to deliver cloud applications on a pay-as-you-go basis, from the smallest web apps to enterprise-level software.
+
+Azure’s PaaS offerings give developers total control over their application, allowing them the freedom to work on building, safe in the knowledge that things like operating system patches or load balancing will just work. With services like Azure Functions, businesses can take advantage of PaaS power without having to worry about server configuration or scaling, which is automatic.
+
+### Software as a Service (SaaS)
+
+A SaaS solution requires the least management, Microsoft being responsible for managing everything, while you just use the software. Software is delivered via the internet, rather than being downloaded onto individual devices. and you are responsible for configuring the SaaS solution such as Outlook email, calendar, and office tools (such as Microsoft Office 365).
+
+With SaaS, every aspect of the software’s hosting, setup, and maintenance is handled by its vendor. Also, all your data, files, and usage history is stored at the vendor’s end, within a multi-tenancy cloud. As a result, the software is accessible from anywhere, on any device, and data is always backed up to a centralized location. Don’t worry, your information can’t be seen or accessed by other software users.
+
+All you need to do to access it is log in to an app or browser and use the software in the same way as you would a traditional desktop application installed on your own computer.
+
+#### SaaS on Azure
+
+Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office 365 are all built and hosted on Azure. Azure can be also used both to host apps you’ve created yourself, beside accessing other Microsoft SaaS services.
+
+One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.
+
+### Azure Global Infrastructure
+
+<https://datacenters.microsoft.com/globe/explore>
+
+* Geographic
+  * Region
+    * Availability Zone
+
+![Azure Regions](images/azure-regions.jpg)
+
+<p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Marketplace
+
+<a name="azure-marketplace"></a>
+
+![Azure Marketplace](images/azure-marktplace.png)
+
+<p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Pricing
+
+<a name="azure-pricing"></a>
+
+### Compute
+
+* Pay as you go
+* Reserved
+* Spot
+
+### OS\Services License
+
+* Included
+* Pay as you go
+* Azure Hybrid Benefic
+
+Example of Plain Migration
+
+![Azure Pricing](images/azure-pricing.png)
+
+<p align="right">(<a href="#azure-pricing">back to cloud azure-pricing</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Subscriptions
+
+<a name="azure-subscription"></a>
+
+<https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions>
+
+![Azure Resources](images/azure-subscriptions.jpg)
+
+<p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Support Plains
+
+<a name="azure-support"></a>
+
+![Azure Support](images/azure-support-plans.png)
+
+<p align="right">(<a href="#azure-support">back to cloud azure-support</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Compute Services
+
+<a name="about-the-project"></a>
+
+![Azure Compute Services](images/azure-compute-services.png)
+
+### Some Important Features
+
+* Virtual Machine Scale Set
+* App Services
+
+<p align="right">(<a href="#azure-compute">back to azure-compute</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Azure CLI
+
+<a name="azurecli"></a>
 
 ### Install
 
@@ -151,7 +277,7 @@ sudo dnf install azure-cli
 # login account
 az login
 
-# list managment groups
+# list management groups
 az account management-group list
 
 # list subscriptions \ accounts
@@ -199,121 +325,6 @@ az vm list-ip-addresses -g labs -n lab-az900
 <p align="right">(<a href="#azurecli">back to azure cli</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<a name="cloud-azure"></a>
-
-## About Cloud in Azure
-
-<https://www.crayon.com/ro/resources/news2/azure-iaas-paas-saas--whats-the-difference>
-
-### Infrastructure as a Service (IaaS)
-
-IaaS is the first layer of cloud services covering the fundamental infrastructure on which all other computing factors are built, hence, replacing the hardware. Instead of buying it, you rent IT infrastructure servers and virtual machines (VMs), storage, networks, and operating systems from Microsoft on a pay-as-you-go basis.
-
-Infrastructure is the backbone that supports a computer system, the servers and storage, networks, security, and data centers. Traditionally, these aspects of computing would be the responsibility of an organization’s own IT department, housed and managed under its own roof but with IaaS, organizations now have the option to have a vendor provide and manage these things on their end.
-
-#### IaaS on Azure
-
-With Azure’s IaaS offering you outsource all your network and computing needs to Microsoft, removing all infrastructure from your own servers and basing it all at Microsoft’s end. All infrastructure is managed on your behalf, leaving you to purchase, install, configure, and operate the software that runs on it, such as operating systems, apps, and middleware.
-
-Azure offers a massive range of IaaS facilities depending on the needs of your business, from compute and networking to security and storage, including Container Service and Virtual Machines through which you can host websites, store and backup data, develop and test environments, build web apps, and run high-performance computing.
-
-Main benefit is that organizations that use IaaS have more freedom to access an IT environment that suits their needs and can customize it as they want in a matter of “mouse clicks” without losing time to purchase, install and configure physical servers or hardware. It also enables companies to get rid of the hassle of having to operate infrastructure and hardware of their own.
-
-### Platform as a Service (PaaS)
-
-A PaaS solution is the middle layer, requiring less user management without access to the operating system. PaaS gives businesses the digital platform to develop and deploy their own apps and services, without the need to maintain server space, programming software, and security protocols internally.
-
-It is faster, cheaper, and simpler for businesses to build their products and services, and scale their resources as needed without significant financial impact if they choose PaaS.
-
-#### PaaS on Azure
-
-If you choose PaaS on Azure, you will find plenty of services to help you implement a cloud-powered development platform. App Services, Azure Search, and Azure CDN, Azure will offer everything you need to deliver cloud applications on a pay-as-you-go basis, from the smallest web apps to enterprise-level software.
-
-Azure’s PaaS offerings give developers total control over their application, allowing them the freedom to work on building, safe in the knowledge that things like operating system patches or load balancing will just work. With services like Azure Functions, businesses can take advantage of PaaS power without having to worry about server configuration or scaling, which is automatic.
-
-### Software as a Service (SaaS)
-
-A SaaS solution requires the least management, Microsoft being responsible for managing everything, while you just use the software. Software is delivered via the internet, rather than being downloaded onto individual devices. and you are responsible for configuring the SaaS solution such as Outlook email, calendar, and office tools (such as Microsoft Office 365).
-
-With SaaS, every aspect of the software’s hosting, setup, and maintenance is handled by its vendor. Also, all your data, files, and usage history is stored at the vendor’s end, within a multi-tenancy cloud. As a result, the software is accessible from anywhere, on any device, and data is always backed up to a centralized location. Don’t worry, your information can’t be seen or accessed by other software users.
-
-All you need to do to access it is log in to an app or browser and use the software in the same way as you would a traditional desktop application installed on your own computer.
-
-#### SaaS on Azure
-
-Main SaaS offerings on Azure are products like Dynamics 365, Outlook, and Office 365 are all built and hosted on Azure. Azure can be also used both to host apps you’ve created yourself, beside accessing other Microsoft SaaS services.
-
-One major benefit of using Azure as a foundation for your SaaS apps is that it lets you take advantage of powerful technology and intelligent tools like analytics and machine learning.
-
-
-
-### Azure Global Infrastructure
-
-<https://datacenters.microsoft.com/globe/explore>
-
-* Geographic
-  * Region
-    * Availability Zone
-
-![Azure Regions](images/azure-regions.jpg)
-
-<p align="right">(<a href="#cloud-azure">back to cloud azure</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<a name="azure-marketplace"></a>
-
-## Azure Marketplace
-
-![Azure Marketplace](images/azure-marktplace.png)
-
-<p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Azure Pricing
-
-<a name="azure-pricing"></a>
-
-### Compute
-
-* Pay as you go
-* Reserved
-* Spot
-
-### License
-
-* Included
-* Pay as you go
-* Azure Hybrid Benefic
-
-Example of Plain Migration
-
-![Azure Pricing](images/azure-pricing.png)
-
-
-<p align="right">(<a href="#azure-pricing">back to cloud azure-pricing</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Azure Subscriptions
-
-<a name="azure-subscription"></a>
-
-<https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions>
-
-![Azure Resources](images/azure-subscriptions.jpg)
-
-<p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Azure Support Plains
-
-<a name="azure-support"></a>
-
-
-![Azure Support](images/azure-support-plans.png)
-
-<p align="right">(<a href="#azure-support">back to cloud azure-support</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to
@@ -349,7 +360,10 @@ Project Link: [https://github.com/marcossilvestrini/learning-az-900](https://git
 * [Azure Pricing](https://azure.microsoft.com/en-us/pricing/)
 * [Support Plains](https://azure.microsoft.com/en-us/support/plans/)
 * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
+* [Create Service Principal](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli)
 * [AWS to Azure services comparison](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services)
+* [Azure VM Size](https://docs.microsoft.com/pt-br/azure/virtual-machines/sizes
+)
 * [Alura Course](https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals)
 * [Simulated](https://www.itexams.com/exam/AZ-900)
 

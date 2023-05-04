@@ -11,6 +11,7 @@
 
 # Script path
 $scriptPath = $PSScriptRoot
+$basepath = (($scriptPath | Split-Path -Parent) | Split-Path -Parent) | Split-Path -Parent
 
 # Install Azure Powershell
 # if(! (Get-Module -Name Az -ListAvailable)){Install-Module -Name Az -AllowClobber -Scope CurrentUser -Force}
@@ -19,39 +20,92 @@ $scriptPath = $PSScriptRoot
 # Import my modules\functions
 . "$scriptPath/azure-functions.ps1"
 
+# Logging
+$logFunctions = "$scriptPath\azure-functions.log"
+
 # Install CLI
 az --version | Select-String -Pattern "azure-cli"
-if(! ($?)){Install-CLI > $null}
+if (! ($?)) { Install-CLI > $null }
 
 # Variablçes
+#$subscription_id=(Get-Content $basepath\security\.azure-secrets | Select-String -Pattern "subscription_id: ").ToString().Split()[1]
+$json = [ordered]@{}
+(Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
+ForEach-Object { $json[$_.Name] = $_.Value }
+
 $groupName = "labs"
-$location="eastus"
-$priority="Spot"
-$authenticationType = "all"
-$image="Debian:debian-11:11-backports-gen2:latest"
+$location = "eastus"
+$priority = "Spot"
+$image = "Debian:debian-11:11-backports-gen2:latest"
 $vmName = "lab-az900"
+$authenticationType = "all"
+$sshKeyName = "id_rsa_$vmName"
 $adminUsername = "vagrant"
-$adminPassword = "Vagrant@123456789"
+$adminPassword = "Vagrant@123456"
+
+# Login i Azure Cloud
+LoginAzurePortal
 
 # Create resource group
-az group create `
---resource-group $groupName `
---location $location
-if($?){Write-Host -ForegroundColor Green "Ressource group for Az-900 has create successfully!!"}
-Else{Write-Host -ForegroundColor Red "Error in create Labs for Az-900. Please check in your Azure Dashboard"}
+if ( $(az group exists --name $groupName) -eq "false") {
+    az group create `
+        --resource-group $groupName `
+        --location $location
+    if ($?) { 
+        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
+        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+     }
+    Else { 
+        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard" 
+        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+    }
+}
+else {
+    if ($?) { 
+        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
+        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+    }
+    Else { 
+        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard"
+        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+    }
+}
+
 
 # Create Virtual machine
-az vm create `
---resource-group $groupName `
---image $image `
---name $vmName `
---computer-name $vmName `
---priority $priority `
---admin-username $adminUsername  `
---admin-password $adminPassword `
---generate-ssh-keys `
---authentication-type 'all'        
-if($?){Write-Host -ForegroundColor Green "VM for Az-900 has create successfully!!"}
-Else{Write-Host -ForegroundColor Red "Error in create Labs for Az-900. Please check in your Azure Dashboard"}
+if ("$(az vm list -d -o table --query "[?name=='$VMNAME']")" -eq "") {
+    az vm create `
+        --resource-group $groupName `
+        --public-ip-sku Standard `
+        --image $image `
+        --name $vmName `
+        --computer-name $vmName `
+        --priority $priority `
+        --admin-username $adminUsername  `
+        --admin-password $adminPassword `
+        --generate-ssh-keys `
+        --ssh-key-name $sshKeyName `
+        --authentication-type $authenticationType
+    if ($?) { 
+        Write-Host -ForegroundColor Green "VM $vmname has create successfully!!"
+        "VM $vmname has create successfully!!" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+     }
+    Else { 
+        Write-Host -ForegroundColor Red "Error in create VM $VMNAME. Please check in your Azure Dashboard" 
+        "Error in create VM $VMNAME. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host "----------------------------------------------------"
+    }
+}
+Else { 
+    Write-Host -ForegroundColor Green "VM $vmname has create successfully!!"
+    "VM $vmname has create successfully!!" >> $logFunctions
+    Write-Host "----------------------------------------------------"
+}
 
-
+# Logout i Azure Cloud
+LogoutAzurePortal

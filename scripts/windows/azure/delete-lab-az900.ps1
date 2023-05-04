@@ -11,9 +11,13 @@
 
 # Script path
 $scriptPath = $PSScriptRoot
+$basepath = (($scriptPath | Split-Path -Parent) |Split-Path -Parent)|Split-Path -Parent
 
 # Import my modules\functions
 . "$scriptPath/azure-functions.ps1"
+
+# Logging
+$logFunctions = "$scriptPath\azure-functions.log"
 
 # Install CLI
 az --version | Select-String -Pattern "azure-cli"
@@ -21,6 +25,12 @@ if(! ($?)){Install-CLI > $null}
 
 # Variables
 $groupName = "labs"
+$json = [ordered]@{}
+(Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
+ForEach-Object { $json[$_.Name] = $_.Value }
+
+# Login i Azure Cloud
+LoginAzurePortal
 
 # delete resource group
 $groupName = "labs"
@@ -28,5 +38,16 @@ if( (az group exists -n $groupName) -eq $true){
     az group delete --resource-group $groupName --yes 
     az group delete --resource-group NetworkWatcherRG --yes
 }
-if($?){Write-Host -ForegroundColor Green "Labs for Az-900 has deleted successfully!!"}
-Else{Write-Host -ForegroundColor Red "Error in delete Labs for Az-900. Please check in your Azure Dashboard"}
+if($?){
+    Write-Host -ForegroundColor Green "Ressource for Labs Az-900 has deleted successfully!!"
+    "Ressource for Labs Az-900 has deleted successfully!!" >> $logFunctions
+    Write-Host "----------------------------------------------------"
+}
+Else{
+    Write-Host -ForegroundColor Red "Error in delete Ressources for Labs Az-900. Please check in your Azure Dashboard"
+    "Error in delete Ressources for Labs Az-900. Please check in your Azure Dashboard" >> $logFunctions
+    Write-Host "----------------------------------------------------"
+}
+
+# Logout i Azure Cloud
+LogoutAzurePortal
