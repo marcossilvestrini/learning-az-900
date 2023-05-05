@@ -17,7 +17,7 @@ Get-Process -Name *ruby* | Stop-Process -Force
 switch ($(hostname)) {
     "silvestrini" {       
         $vagrant = "E:\Apps\Vagrant\bin\vagrant.exe"
-        $baseVagrantfile="F:\CERTIFICACAO\AZ-900\vagrant\"
+        $baseVagrantfile="F:\CERTIFICACAO\AZ-900\vagrant"
         $vagrantHome = "E:\Apps\Vagrant\vagrant.d"      
         $virtualboxFolder = "E:\Apps\VirtualBox"
         $virtualboxVMFolder = "E:\Servers\VirtualBox" 

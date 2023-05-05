@@ -24,7 +24,7 @@
       "command": "",
       "windows": {
         "command": [
-          "if(! (Get-Module -Name AzureRM -ListAvailable)){Install-Module -Name Az -Repository PSGallery -Force}"
+          "if(! (Get-Module -Name Az -ListAvailable)){Install-Module -Name Az -Repository PSGallery -Force}"
         ]
       },
       "presentation": {

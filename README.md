@@ -230,7 +230,6 @@ Example of Plain Migration
 ### Some Important Features
 
 * Virtual Machine Scale Set
-* App Services
 
 <p align="right">(<a href="#azure-compute">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -362,8 +361,7 @@ Project Link: [https://github.com/marcossilvestrini/learning-az-900](https://git
 * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli)
 * [Create Service Principal](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli)
 * [AWS to Azure services comparison](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services)
-* [Azure VM Size](https://docs.microsoft.com/pt-br/azure/virtual-machines/sizes
-)
+* [Azure VM Size](https://docs.microsoft.com/pt-br/azure/virtual-machines/sizes)
 * [Alura Course](https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals)
 * [Simulated](https://www.itexams.com/exam/AZ-900)
 

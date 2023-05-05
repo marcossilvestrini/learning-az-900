@@ -103,8 +103,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     debian_client01.vm.synced_folder ".", "/vagrant", disabled: true
     debian_client01.vm.synced_folder "../../security/", "/home/vagrant/security"
     debian_client01.vm.synced_folder "../../configs/linux/", "/home/vagrant/configs"
-    debian_client01.vm.synced_folder "../../scripts/", "/home/vagrant/scripts"
-    debian_client01.vm.synced_folder "../../apps/", "/home/vagrant/apps"
+    debian_client01.vm.synced_folder "../../scripts/", "/home/vagrant/scripts"    
     debian_client01.vm.synced_folder "../../test/linux/", "/home/vagrant/test"
 
     #PROVIDER
