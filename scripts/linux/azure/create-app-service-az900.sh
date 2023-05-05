@@ -27,6 +27,9 @@ LOGFUNCTIONS="$DIR_PATH/azure-functions.log"
 source "$DIR_PATH/azure-functions.sh"
 
 # Variabels
+JSON=security/.azure-secrets
+USERNAME=$(jq -r .usernameDeploy $JSON)
+PASSWORD=$(jq -r .passwordDeploy $JSON)
 GROUPNAME="labs"
 LOCATION="eastus"
 PLANNAME="app-az900"
@@ -34,6 +37,24 @@ PLANSKU="F1"
 SITENAME="app-az900"
 ROLE="Owner"
 RUNTIME="NODE:18-lts"
+
+# Create Node App local for deploy in Azure Cloud
+if [ -d "/opt/azure/app-services" ];
+then
+    rm -rf /opt/azure/app-services
+fi
+mkdir -p  /opt/azure/app-services
+npm config set prefix '/opt/azure/app-services'
+cd /opt/azure/app-services || exit
+npx --yes express-generator app-node-az900 --view pug --git
+export PATH=/opt/azure/app-services/app-node-az900/bin:$PATH
+cd app-node-az900 || exit
+npm install -y
+sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD /g" /opt/azure/app-services/app-node-az900/routes/index.js
+chmod 777 -R /opt/azure/app-services/app-node-az900/
+#(teste localhost:3000)
+#npm start &
+
 
 # Login i Azure Cloud
 LoginAzurePortal
@@ -110,23 +131,72 @@ fi
 
 # To set up deployment from a local git repository, uncomment the following commands.
 # first, set the username and password (use environment variables!)
-# USERNAME=""
-# PASSWORD=""
-# az webapp deployment user set --user-name $USERNAME --password $PASSWORD
+if az webapp deployment user set \
+     --user-name "$USERNAME" \
+     --password "$PASSWORD";
+    then
+        echo "Deployment user $USERNAME set with successful!!"
+        echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard"
+        echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+fi    
 
 # now, configure the site for deployment. in this case, we will deploy from the local git repository
 # you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
-# az webapp deployment source config-local-git --name $SITENAME --resource-group $RESOURCEGROUP
+if az webapp deployment source config-local-git \
+    --name $SITENAME \
+    --resource-group $GROUPNAME;
+    then
+        echo "Deployment site $SITENAME set with successful!!"
+        echo  "Deployment site $SITENAME set with successful!!" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in Deployment site $SITENAME. Please check in your Azure Dashboard"
+        echo "Error in Deployment site $SITENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+fi    
 
 # the previous command returned the git remote to deploy to
 # use this to set up a new remote named "azure"
-# git remote add azure "https://$USERNAME@$SITENAME.scm.azurewebsites.net/$SITENAME.git"
+cd /opt/azure/app-services/app-node-az900 || exit
+if git config --global --add safe.directory . && \
+    git config --global user.name "$USERNAME" && \
+    git config --global user.mail "$USERNAME@outlook.com" && \
+    git init && \
+    git remote add origin "https://$USERNAME@$SITENAME.scm.azurewebsites.net/$SITENAME.git" && \
+    git remote set-url origin "https://$USERNAME:$PASSWORD@$SITENAME.scm.azurewebsites.net/$SITENAME.git";
+    git config credential.helper store;    
+    then
+        echo "Set remote repository for deployment site $SITENAME with successful!!"
+        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in set remote repository for deployment site $SITENAME. Please check in your Azure Dashboard"
+        echo "Error in set remote repository for deployment site $SITENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+fi   
+
+# Add and Commit files
+git add .
+git commit -m "Deployment site $SITENAME"
+
 # push master to deploy the site
-# git push azure master
+if git push origin master;
+    then
+        echo "Set remote repository for deployment site $SITENAME with successful!!"
+        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
+        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+fi   
 
 # browse to the site
 # az webapp browse --name $SITENAME --resource-group $RESOURCEGROUP
-
 
 # Logout in Azure Cloud
  LogoutAzurePortal

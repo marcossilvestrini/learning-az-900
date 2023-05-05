@@ -1,5 +1,6 @@
-$project = "F:\CERTIFICACAO\lpic-2-202-450"
-Set-Location $project
+$scriptPath=$PSScriptRoot
+$repository=(($scriptPath | Split-Path -Parent)|Split-Path -Parent)|Split-Path -Parent
+Set-Location $repository
 Get-Process -Name *git* | Stop-Process -Force
 git checkout main
 git pull
