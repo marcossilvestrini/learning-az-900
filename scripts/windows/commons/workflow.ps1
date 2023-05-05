@@ -16,7 +16,7 @@ Add-Content -Path $file -Value "Start Trigger Pipelines..."
 $start = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 Add-Content -Path $file -Value $start
 Set-Location $repository
-git pull
+git pull origin main
 git add .
 git commit -m "Start Pepilines"
 git push origin main
