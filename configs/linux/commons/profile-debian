@@ -35,3 +35,7 @@ fi
 
 #Set timezone
 sudo timedatectl set-timezone America/Sao_Paulo
+
+# Install vscode extencions
+code /home/vagrant --install-extension ms-vscode.vscode-node-azure-pack
+

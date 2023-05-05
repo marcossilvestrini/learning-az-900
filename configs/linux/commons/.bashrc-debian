@@ -114,3 +114,6 @@ fi
 
 TZ='America/Sao_Paulo'
 export TZ
+
+# Install vscode extencions
+#code /home/vagrant --install-extension ms-vscode.vscode-node-azure-pack
