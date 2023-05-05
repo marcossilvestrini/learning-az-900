@@ -7,6 +7,7 @@
     Date: 18/04/2023
 MULTILINE-COMMENT
 
+# Set language/locale and encoding
 export LANG=C
 
 cd /home/vagrant || exit

@@ -1,4 +1,4 @@
-# # Script for executin pipeline for build ant test
+# # Script for executin pipeline for build and test
 $scriptPath=$PSScriptRoot
 $semafore="$scriptPath\vagrant-up.silvestrini"
 $timeout=0

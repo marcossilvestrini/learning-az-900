@@ -9,6 +9,7 @@
         ./up-lab-az900.sh
 SCRIPT
 
+# Set language/locale and encoding
 export LANG=C
 
 cd /home/vagrant || exit
