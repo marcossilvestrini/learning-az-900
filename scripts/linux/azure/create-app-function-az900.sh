@@ -232,17 +232,17 @@ fi
 git add .
 git commit -m "Deployment site $SITENAME"
 
-# # Push master to azure for deploy the site
-# if git push -f origin master;
-#     then
-#         echo "Set remote repository for deployment site $SITENAME with successful!!"
-#         echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
-#         echo "----------------------------------------------------"
-#     else 
-#         echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
-#         echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-#         echo "----------------------------------------------------"
-# fi   
+# Push master to azure for deploy the site
+if git push -f origin master;
+    then
+        echo "Set remote repository for deployment site $SITENAME with successful!!"
+        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
+        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+fi   
 
 # Logout in Azure Cloud
  LogoutAzurePortal
