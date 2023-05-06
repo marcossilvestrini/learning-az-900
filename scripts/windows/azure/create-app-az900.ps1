@@ -28,7 +28,7 @@ $json = [ordered]@{}
 (Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
 ForEach-Object { $json[$_.Name] = $_.Value }
 $subscription="labs"
-$groupName = "labs"
+$resourcegroup = "labs"
 $location = "eastus"
 $planname="app-az900"
 $plansku="F1"
@@ -41,30 +41,30 @@ $role="Owner"
 LoginAzurePortal
 
 # Create resource group
-if ( $(az group exists --name $groupName) -eq "false") {
+if ( $(az group exists --name $resourcegroup) -eq "false") {
     az group create `
-        --resource-group $groupName `
+        --resource-group $resourcegroup `
         --location $location
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
      }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard" 
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard" 
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
 else {
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard"
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard"
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
@@ -75,7 +75,7 @@ az appservice plan create `
     --name $planname `
     --location $location `
     --sku $plansku `
-    --resource-group $groupName 
+    --resource-group $resourcegroup 
     if ($?) { 
         Write-Host -ForegroundColor Green "Appservice Plan $planname has create successfully!!"
         "Appservice Plan $planname has create successfully!!" >>$logFunctions
@@ -101,7 +101,7 @@ az webapp create `
     --role $role `
     --name $sitename `
     --plan $planname `
-    --resource-group $groupName `
+    --resource-group $resourcegroup `
     --runtime $runtime
     if ($?) { 
         Write-Host -ForegroundColor Green "Webapp $sitename has create successfully!!"

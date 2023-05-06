@@ -33,7 +33,7 @@ $json = [ordered]@{}
 (Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
 ForEach-Object { $json[$_.Name] = $_.Value }
 
-$groupName = "labs"
+$resourcegroup = "labs"
 $location = "eastus"
 $priority = "Spot"
 $image = "Debian:debian-11:11-backports-gen2:latest"
@@ -47,30 +47,30 @@ $adminPassword = "Vagrant@123456"
 LoginAzurePortal
 
 # Create resource group
-if ( $(az group exists --name $groupName) -eq "false") {
+if ( $(az group exists --name $resourcegroup) -eq "false") {
     az group create `
-        --resource-group $groupName `
+        --resource-group $resourcegroup `
         --location $location
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
      }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard" 
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard" 
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
 else {
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard"
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard"
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
@@ -79,7 +79,7 @@ else {
 # Create Virtual machine
 if ("$(az vm list -d -o table --query "[?name=='$VMNAME']")" -eq "") {
     az vm create `
-        --resource-group $groupName `
+        --resource-group $resourcegroup `
         --public-ip-sku Standard `
         --image $image `
         --name $vmName `

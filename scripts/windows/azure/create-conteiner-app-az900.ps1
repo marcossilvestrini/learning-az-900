@@ -29,7 +29,7 @@ $json = [ordered]@{}
 (Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
 ForEach-Object { $json[$_.Name] = $_.Value }
 
-$groupName = "labs"
+$resourcegroup = "labs"
 $name="app-az900"
 $dnslabel="app-az900"
 $location="eastus"
@@ -39,38 +39,38 @@ $image="mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine"
 LoginAzurePortal
 
 # Create resource group
-if ( $(az group exists --name $groupName) -eq "false") {
+if ( $(az group exists --name $resourcegroup) -eq "false") {
     az group create `
-        --resource-group $groupName `
+        --resource-group $resourcegroup `
         --location $location
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
      }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard" 
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard" 
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
 else {
     if ($?) { 
-        Write-Host -ForegroundColor Green "Ressource group $groupname has create successfully!!"
-        "Ressource group $groupname has create successfully!!" >>$logFunctions
+        Write-Host -ForegroundColor Green "Ressource group $resourcegroup has create successfully!!"
+        "Ressource group $resourcegroup has create successfully!!" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
     Else { 
-        Write-Host -ForegroundColor Red "Error in create group $groupname. Please check in your Azure Dashboard"
-        "Error in create group $groupname. Please check in your Azure Dashboard" >>$logFunctions
+        Write-Host -ForegroundColor Red "Error in create group $resourcegroup. Please check in your Azure Dashboard"
+        "Error in create group $resourcegroup. Please check in your Azure Dashboard" >>$logFunctions
         Write-Host "----------------------------------------------------"
     }
 }
 
 # Create Conteiner Instance
-if ("$(az container show -o table --resource-group "$GROUPNAME" --name "$NAME" --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}")" -eq "") {
+if ("$(az container show -o table --resource-group "$resourcegroup" --name "$NAME" --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}")" -eq "") {
     az container create `
-        --resource-group "$GROUPNAME" `
+        --resource-group "$resourcegroup" `
         --name "$NAME" `
         --image "$IMAGE" `
         --dns-name-label "$DNSLABEL" `

@@ -25,15 +25,15 @@ LOGFUNCTIONS="$DIR_PATH/azure-functions.log"
 source "$DIR_PATH/azure-functions.sh"
 
 # Variables
-GROUPNAME="labs"
+RESOURCEGROUP="labs"
 
 # Login i Azure Cloud
 LoginAzurePortal
 
 # SDelete resource group labs
-if [ $(az group exists --name "$GROUPNAME") = true ];
+if [ $(az group exists --name "$RESOURCEGROUP") = true ];
 then
-    if az group delete --resource-group "$GROUPNAME" --yes && az group delete --resource-group NetworkWatcherRG --yes;
+    if az group delete --resource-group "$RESOURCEGROUP" --yes && az group delete --resource-group NetworkWatcherRG --yes;
     then
         echo "Ressource for Labs Az-900 has deleted successfully!!"
         echo "Ressource for Labs Az-900 has deleted successfully!!" >> "$LOGFUNCTIONS"

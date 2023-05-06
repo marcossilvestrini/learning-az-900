@@ -25,7 +25,7 @@ LOGFUNCTIONS="$DIR_PATH/azure-functions.log"
 source "$DIR_PATH/azure-functions.sh"
 
 # Variablçes
-GROUPNAME="labs"
+RESOURCEGROUP="labs"
 NAME="app-az900"
 DNSLABEL="app-az900"
 LOCATION="eastus"
@@ -35,31 +35,31 @@ IMAGE="mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine"
 LoginAzurePortal
 
 # Create resource group
-if [ $(az group exists --name "$GROUPNAME") = false ];
+if [ $(az group exists --name "$RESOURCEGROUP") = false ];
  then
     if az group create \
-        --resource-group $GROUPNAME \
+        --resource-group $RESOURCEGROUP \
         --location $LOCATION;
     then
-        echo "Ressource group $GROUPNAME has create successfully!!"
-        echo "Ressource group $GROUPNAME has create successfully!!" >>"$LOGFUNCTIONS"
+        echo "Ressource group $RESOURCEGROUP has create successfully!!"
+        echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     else 
-        echo  "Error in create group $GROUPNAME. Please check in your Azure Dashboard"
-        echo  "Error in create group $GROUPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo  "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard"
+        echo  "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     fi
 else
-    echo "Ressource group $GROUPNAME has create successfully!!"
-    echo "Ressource group $GROUPNAME has create successfully!!" >>"$LOGFUNCTIONS"
+    echo "Ressource group $RESOURCEGROUP has create successfully!!"
+    echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
     echo "----------------------------------------------------"
 fi
 
 # Create Conteiner Intance
-if [ "$(az container show -o table --resource-group "$GROUPNAME" --name "$NAME" --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}")" = "" ];
+if [ "$(az container show -o table --resource-group "$RESOURCEGROUP" --name "$NAME" --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}")" = "" ];
 then
     if az container create \
-    --resource-group "$GROUPNAME" \
+    --resource-group "$RESOURCEGROUP" \
     --name "$NAME" \
     --image "$IMAGE" \
     --dns-name-label "$DNSLABEL" \

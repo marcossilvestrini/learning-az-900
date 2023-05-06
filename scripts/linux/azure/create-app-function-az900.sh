@@ -4,11 +4,11 @@
     .Synopsis
         Script for up app 
     .DESCRIPTION
-    Script for up node app service  in Azure Cloud
+        Script for create azure function for node app service  in Azure Cloud
     .PREREQUISITES    
         ./azure-functions.sh
     .EXAMPLE
-        ./create-app-az900.sh
+        ./create-app-function-az900.sh
 SCRIPT
 
 # Set language/locale and encoding
@@ -35,8 +35,13 @@ LOCATION="eastus"
 PLANNAME="app-az900"
 PLANSKU="F1"
 SITENAME="app-az900"
+APPNODENAME="app-node-az900"
 ROLE="Owner"
 RUNTIME="NODE:18-lts"
+UNIQAPPNAME="AppAz900"
+OSTYPE="Linux"
+STORAGE="labsaz900"
+
 
 # Create Node App local for deploy in Azure Cloud
 if [ -d "/opt/azure/app-services" ];
@@ -46,15 +51,15 @@ fi
 mkdir -p  /opt/azure/app-services
 npm config set prefix '/opt/azure/app-services'
 cd /opt/azure/app-services || exit
-npx --yes express-generator app-node-az900 --view pug --git
-export PATH=/opt/azure/app-services/app-node-az900/bin:$PATH
-cd app-node-az900 || exit
+npx --yes express-generator $APPNODENAME --view pug --git
+export PATH=/opt/azure/app-services/$APPNODENAME/bin:$PATH
+cd $APPNODENAME || exit
 npm install -y
-sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD /g" /opt/azure/app-services/app-node-az900/routes/index.js
-chmod 777 -R /opt/azure/app-services/app-node-az900/
+sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD /g" /opt/azure/app-services/$APPNODENAME/routes/index.js
+chmod 777 -R /opt/azure/app-services/$APPNODENAME/
+
 #(teste localhost:3000)
 #npm start &
-
 
 # Login i Azure Cloud
 LoginAzurePortal
@@ -161,7 +166,11 @@ fi
 
 # the previous command returned the git remote to deploy to
 # use this to set up a new remote named "azure"
-cd /opt/azure/app-services/app-node-az900 || exit
+cd /opt/azure/app-services/$APPNODENAME || exit
+if [ -d ".git" ];
+then
+    rm -rf .git
+fi
 if git config --global --add safe.directory . && \
     git config --global user.name "$USERNAME" && \
     git config --global user.mail "$USERNAME@outlook.com" && \
@@ -179,24 +188,61 @@ if git config --global --add safe.directory . && \
         echo "----------------------------------------------------"
 fi   
 
-# Add and Commit files
-git add .
-git commit -m "Deployment site $SITENAME"
-
-# push master to deploy the site
-if git push origin master;
-    then
-        echo "Set remote repository for deployment site $SITENAME with successful!!"
-        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else 
-        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
-        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-fi   
 
 # browse to the site
 # az webapp browse --name $SITENAME --resource-group $RESOURCEGROUP
+
+# Create Azure function for App
+
+## Create Storage account
+az storage account create -n $STORAGE -g $RESOURCEGROUP -l $LOCATION --sku Standard_LRS
+
+## Create function local folder for deployment
+mkdir -p  /opt/azure/app-services/$APPNODENAME/functions
+#cd /opt/azure/app-services/$APPNODENAME/functions || exit
+
+## Create Azure function
+if [ "$(az functionapp show -o table --name $SITENAME --resource-group $RESOURCEGROUP)" = "" ];
+then    
+    if az functionapp create \
+        --consumption-plan-location "$LOCATION" \
+        --name "$SITENAME" \
+        --os-type "$OSTYPE" \
+        --resource-group "$RESOURCEGROUP" \
+        --runtime node \
+        --storage-account "$RESOURCEGROUP";
+    then
+        echo "Azure Function $UNIQAPPNAME has create successfully!!"
+        echo "Azure Function $UNIQAPPNAME has create successfully!!">>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    else 
+        echo "Error in create Azure Function $UNIQAPPNAME. Please check in your Azure Dashboard"
+        echo "Error in create Azure Function $UNIQAPPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "----------------------------------------------------"
+    fi    
+else    
+        echo "Azure Function $UNIQAPPNAME has create successfully!!"
+        echo "Azure Function $UNIQAPPNAME has create successfully!!">>"$LOGFUNCTIONS"
+    echo "----------------------------------------------------"
+fi
+
+# Add and Commit files
+#cd /opt/azure/app-services/$APPNODENAME
+#git pull origin master --allow-unrelated-histories
+git add .
+git commit -m "Deployment site $SITENAME"
+
+# # Push master to azure for deploy the site
+# if git push -f origin master;
+#     then
+#         echo "Set remote repository for deployment site $SITENAME with successful!!"
+#         echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     else 
+#         echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
+#         echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+# fi   
 
 # Logout in Azure Cloud
  LogoutAzurePortal

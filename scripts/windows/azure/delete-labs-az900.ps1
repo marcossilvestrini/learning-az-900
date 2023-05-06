@@ -24,7 +24,7 @@ az --version | Select-String -Pattern "azure-cli"
 if(! ($?)){Install-CLI > $null}
 
 # Variables
-$groupName = "labs"
+$resourcegroup = "labs"
 $json = [ordered]@{}
 (Get-Content $basepath\security\.azure-secrets -Raw | ConvertFrom-Json).PSObject.Properties |
 ForEach-Object { $json[$_.Name] = $_.Value }
@@ -33,9 +33,9 @@ ForEach-Object { $json[$_.Name] = $_.Value }
 LoginAzurePortal
 
 # delete resource group
-$groupName = "labs"
-if( (az group exists -n $groupName) -eq $true){
-    az group delete --resource-group $groupName --yes 
+$resourcegroup = "labs"
+if( (az group exists -n $resourcegroup) -eq $true){
+    az group delete --resource-group $resourcegroup --yes 
     az group delete --resource-group NetworkWatcherRG --yes
 }
 if($?){

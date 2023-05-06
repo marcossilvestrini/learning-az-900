@@ -230,6 +230,7 @@ Example of Plain Migration
 ### Some Important Features
 
 * Virtual Machine Scale Set
+* Azure Functions
 
 <p align="right">(<a href="#azure-compute">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
