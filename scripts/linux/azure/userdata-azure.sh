@@ -25,6 +25,11 @@ else
     echo "This script is not available for RPM distributions!!!";exit 1;
 fi
 
+# Install Node.js
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+apt update -y
+apt install -y nodejs
+
 # Install Azure CLI
 
 ## Install packages

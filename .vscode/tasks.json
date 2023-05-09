@@ -33,7 +33,7 @@
       },
       "runOptions": {
         "runOn": "folderOpen"
-      } 
+      }
     },
     {
       "label": "Cleanup slack channel",
@@ -41,7 +41,7 @@
       "command": "python -u ../slack/clean_app-github.py",
       "windows": {
         "command": [
-          "python -u slack/clean_app-github.py"          
+          "python -u slack/clean_app-github.py"
         ]
       },
       "presentation": {
@@ -50,6 +50,34 @@
       },
       "runOptions": {
         "runOn": "folderOpen"
+      }
+    },
+    {
+      "type": "func",
+      "label": "func: host start",
+      "command": "host start",
+      "problemMatcher": "$func-node-watch",
+      "isBackground": true,
+      "dependsOn": "npm install (functions)",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "npm install (functions)",
+      "command": "npm install",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "npm prune (functions)",
+      "command": "npm prune --production",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/app"
       }
     }
   ]
