@@ -18,18 +18,28 @@ DISTRO=$(cat /etc/*release | grep -ws NAME=)
 apt install -y nodejs npm
 apt install -y jq
 
+# Check if distribution is Debian
+if [[ "$DISTRO" == *"Debian"* ]]; then    
+    echo "Distribution is Debian...Congratulations!!!"
+else    
+    echo "This script is not available for RPM distributions!!!";exit 1;
+fi
+
 # Install Azure CLI
 
 ## Install packages
-if [[ "$DISTRO" == *"Debian"* ]]; then    
-    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-else    
-    rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
-fi
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 ## Check CLI install
 az --version | grep -ws "azure-cli"
+
+## Install the Azure Functions Core Tools
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/debian/$(lsb_release -rs | \
+cut -d'.' -f 1)/prod $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list'
+apt-get -y update
+apt-get install azure-functions-core-tools-4
 
 # Install Powershell 7
 

@@ -33,30 +33,12 @@ PASSWORD=$(jq -r .passwordDeploy $JSON)
 RESOURCEGROUP="labs"
 LOCATION="eastus"
 PLANNAME="app-az900"
-PLANSKU="F1"
-SITENAME="app-az900"
+APPNAME="app-az900"
 APPNODENAME="app-node-az900"
 ROLE="Owner"
-RUNTIME="NODE:18-lts"
-UNIQAPPNAME="AppAz900"
+RUNTIMEWEBAPP="NODE:18-lts"
 OSTYPE="Linux"
-STORAGE="labsaz900"
-
-
-# Create Node App local for deploy in Azure Cloud
-if [ -d "/opt/azure/app-services" ];
-then
-    rm -rf /opt/azure/app-services
-fi
-mkdir -p  /opt/azure/app-services
-npm config set prefix '/opt/azure/app-services'
-cd /opt/azure/app-services || exit
-npx --yes express-generator $APPNODENAME --view pug --git
-export PATH=/opt/azure/app-services/$APPNODENAME/bin:$PATH
-cd $APPNODENAME || exit
-npm install -y
-sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD /g" /opt/azure/app-services/$APPNODENAME/routes/index.js
-chmod 777 -R /opt/azure/app-services/$APPNODENAME/
+FUNCTIONNAME="FuncAz900"
 
 #(teste localhost:3000)
 #npm start &
@@ -65,18 +47,16 @@ chmod 777 -R /opt/azure/app-services/$APPNODENAME/
 LoginAzurePortal
 
 # Create resource group
-if [ $(az group exists --name "$RESOURCEGROUP") = false ];
- then
+if [ $(az group exists --name "$RESOURCEGROUP") = false ]; then
     if az group create \
         --resource-group $RESOURCEGROUP \
-        --location $LOCATION;
-    then
+        --location $LOCATION; then
         echo "Ressource group $RESOURCEGROUP has create successfully!!"
         echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    else 
-        echo  "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard"
-        echo  "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+    else
+        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard"
+        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     fi
 else
@@ -86,24 +66,24 @@ else
 fi
 
 # Create Appservice Plan
-if [ "$(az appservice plan list -o table  --query "[?name=='$PLANNAME']")" = "" ];
+if [ "$(az appservice plan list -o table --query "[?name=='$PLANNAME']" | grep $PLANNAME | sed -n 1p | cut -c 1-9)" != "$PLANNAME" ];
 then
+    echo "Starting create appservice plan now..."
+    echo "Starting create appservice plan now..." >>"$LOGFUNCTIONS"
     if az appservice plan create \
-    --is-linux \
-    --name $PLANNAME \
-    --location $LOCATION \
-    --sku $PLANSKU \
-    --resource-group $RESOURCEGROUP;
-    then
+        --is-linux \
+        --name "$PLANNAME" \
+        --location "$LOCATION" \
+        --resource-group "$RESOURCEGROUP"; then
         echo "Appservice Plan $PLANNAME has create successfully!!"
         echo "Appservice Plan $PLANNAME has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    else 
+    else
         echo "Error in create Appservice Plan $PLANNAME. Please check in your Azure Dashboard"
         echo "Error in create Appservice Plan $PLANNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    fi    
-else    
+    fi
+else
     echo "Appservice Plan $PLANNAME has create successfully!!"
     echo "Appservice Plan $PLANNAME has create successfully!!" >>"$LOGFUNCTIONS"
     echo "----------------------------------------------------"
@@ -111,139 +91,126 @@ fi
 
 # Create the web application on the plan
 # Specify the node version your app requires
-if [ "$(az webapp list -o table  --query "[?name=='$SITENAME']")" = "" ];
-then
+if [ "$(az webapp list -o table --query "[?name=='$APPNAME']")" = "" ]; then
     if az webapp create \
-    --role $ROLE \
-    --name $SITENAME \
-    --plan $PLANNAME \
-    --resource-group $RESOURCEGROUP \
-    --runtime $RUNTIME;
-    then
-        echo "Webapp $SITENAME has create successfully!!"
-        echo "Webapp $SITENAME has create successfully!!" >>"$LOGFUNCTIONS"
+        --role "$ROLE" \
+        --name "$APPNAME" \
+        --plan "$PLANNAME" \
+        --resource-group "$RESOURCEGROUP" \
+        --runtime "$RUNTIMEWEBAPP"; then
+        echo "Webapp $APPNAME has create successfully!!"
+        echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    else 
-        echo "Error in create webapp $SITENAME. Please check in your Azure Dashboard"
-        echo "Error in create webapp $SITENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+    else
+        echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard"
+        echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    fi    
-else    
-    echo "Webapp $SITENAME has create successfully!!"
-    echo "Webapp $SITENAME has create successfully!!" >>"$LOGFUNCTIONS"
+    fi
+else
+    echo "Webapp $APPNAME has create successfully!!"
+    echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
     echo "----------------------------------------------------"
 fi
 
 # To set up deployment from a local git repository, uncomment the following commands.
 # first, set the username and password (use environment variables!)
-if az webapp deployment user set \
-     --user-name "$USERNAME" \
-     --password "$PASSWORD";
-    then
+if [ "$(az webapp deployment user show | grep publishingUserName | cut -c 24-34)" != "$USERNAME" ];
+then
+    if az webapp deployment user set \
+        --user-name "$USERNAME" \
+        --password "$PASSWORD"; then
         echo "Deployment user $USERNAME set with successful!!"
         echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    else 
+    else
         echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard"
         echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-fi    
+    fi
+else
+    echo "Deployment user $USERNAME set with successful!!"
+    echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
+    echo "----------------------------------------------------"
+fi
 
-# now, configure the site for deployment. in this case, we will deploy from the local git repository
-# you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
-if az webapp deployment source config-local-git \
-    --name $SITENAME \
-    --resource-group $RESOURCEGROUP;
-    then
-        echo "Deployment site $SITENAME set with successful!!"
-        echo  "Deployment site $SITENAME set with successful!!" >>"$LOGFUNCTIONS"
+# # now, configure the site for deployment. in this case, we will deploy from the local git repository
+# # you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
+if [ "$(az webapp deployment source show --name $APPNAME --resource-group $RESOURCEGROUP 2>&1 | grep "Code: ResourceGroupNotFound")" != "" ];
+then
+    if az webapp deployment source config-local-git \
+        --name "$APPNAME" \
+        --resource-group "$RESOURCEGROUP"; then
+        echo "Deployment Source for site $APPNAME set with successful!!"
+        echo "Deployment Source for site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-    else 
-        echo "Error in Deployment site $SITENAME. Please check in your Azure Dashboard"
-        echo "Error in Deployment site $SITENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+    else
+        echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard"
+        echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
-fi    
+    fi
+else
+    echo "Deployment Source for Site $APPNAME set with successful!!"
+    echo "Deployment Source for Site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
+    echo "----------------------------------------------------"
+fi
+
+# Create Node App local for deploy in Azure App Service
+if [ -d "/opt/azure/app-services" ]; then
+    rm -rf /opt/azure/app-services
+fi
+mkdir -p /opt/azure/app-services
+npm config set prefix '/opt/azure/app-services'
+cd /opt/azure/app-services || exit
+npx --yes express-generator $APPNODENAME --view pug --git
+export PATH=/opt/azure/app-services/$APPNODENAME/bin:$PATH
+cd $APPNODENAME || exit
+npm install -y
+DATE=$(date '+%Y-%m-%d %H:%M:%S')
+sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD - MARCOS SILVESTRINI - $DATE /g" /opt/azure/app-services/$APPNODENAME/routes/index.js
+chmod 777 -R /opt/azure/app-services/$APPNODENAME/
+
+# Create a local Azure Function Project
+mkdir -p /opt/azure/app-services/$APPNODENAME/functions
+chmod 777 -R /opt/azure/app-services/$APPNODENAME
+func init /opt/azure/app-services/$APPNODENAME/functions --model V4 --worker-runtime node
+cd /opt/azure/app-services/$APPNODENAME/functions || exit
+func new --template "Http Trigger" --name "$FUNCTIONNAME" --authlevel "anonymous"
+func azure functionapp publish $FUNCTIONNAME
+
 
 # the previous command returned the git remote to deploy to
 # use this to set up a new remote named "azure"
 cd /opt/azure/app-services/$APPNODENAME || exit
-if [ -d ".git" ];
-then
+if [ -d ".git" ]; then
     rm -rf .git
 fi
-if git config --global --add safe.directory . && \
-    git config --global user.name "$USERNAME" && \
-    git config --global user.mail "$USERNAME@outlook.com" && \
-    git init && \
-    git remote add origin "https://$USERNAME@$SITENAME.scm.azurewebsites.net/$SITENAME.git" && \
-    git remote set-url origin "https://$USERNAME:$PASSWORD@$SITENAME.scm.azurewebsites.net/$SITENAME.git";
-    git config credential.helper store;    
-    then
-        echo "Set remote repository for deployment site $SITENAME with successful!!"
-        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else 
-        echo "Error in set remote repository for deployment site $SITENAME. Please check in your Azure Dashboard"
-        echo "Error in set remote repository for deployment site $SITENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-fi   
 
+git config --global --add safe.directory .
+git init 
+git config --global user.name "$USERNAME"
+git config --global user.mail "$USERNAME@outlook.com"
+git remote add origin "https://$USERNAME@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
+git remote set-url origin "https://$USERNAME:$PASSWORD@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
+git config credential.helper store;
 
-# browse to the site
-# az webapp browse --name $SITENAME --resource-group $RESOURCEGROUP
+# Add and Commit files
+git add .
+git commit -m "Deployment site $APPNAME"
 
-# Create Azure function for App
-
-## Create Storage account
-az storage account create -n $STORAGE -g $RESOURCEGROUP -l $LOCATION --sku Standard_LRS
-
-## Create function local folder for deployment
-mkdir -p  /opt/azure/app-services/$APPNODENAME/functions
-#cd /opt/azure/app-services/$APPNODENAME/functions || exit
-
-## Create Azure function
-if [ "$(az functionapp show -o table --name $SITENAME --resource-group $RESOURCEGROUP)" = "" ];
-then    
-    if az functionapp create \
-        --consumption-plan-location "$LOCATION" \
-        --name "$SITENAME" \
-        --os-type "$OSTYPE" \
-        --resource-group "$RESOURCEGROUP" \
-        --runtime node \
-        --storage-account "$RESOURCEGROUP";
-    then
-        echo "Azure Function $UNIQAPPNAME has create successfully!!"
-        echo "Azure Function $UNIQAPPNAME has create successfully!!">>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else 
-        echo "Error in create Azure Function $UNIQAPPNAME. Please check in your Azure Dashboard"
-        echo "Error in create Azure Function $UNIQAPPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    fi    
-else    
-        echo "Azure Function $UNIQAPPNAME has create successfully!!"
-        echo "Azure Function $UNIQAPPNAME has create successfully!!">>"$LOGFUNCTIONS"
+# Push master to azure for deploy the site
+if git push -f origin master; then
+    echo "Set remote repository for deployment site $APPNAME with successful!!"
+    echo "Set remote repository for deployment site $APPNAME with successful!!" >>"$LOGFUNCTIONS"
+    echo "----------------------------------------------------"
+else
+    echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard"
+    echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
     echo "----------------------------------------------------"
 fi
 
-# Add and Commit files
-#cd /opt/azure/app-services/$APPNODENAME
-#git pull origin master --allow-unrelated-histories
-git add .
-git commit -m "Deployment site $SITENAME"
-
-# Push master to azure for deploy the site
-if git push -f origin master;
-    then
-        echo "Set remote repository for deployment site $SITENAME with successful!!"
-        echo  "Set remote repository for deployment site $SITENAME with successful!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else 
-        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard"
-        echo "Error in set remote repository for deployment site $SITENAME ". Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-fi   
+# browse to the site
+# az webapp browse --name $APPNAME --resource-group $RESOURCEGROUP
 
 # Logout in Azure Cloud
- LogoutAzurePortal
+LogoutAzurePortal
 

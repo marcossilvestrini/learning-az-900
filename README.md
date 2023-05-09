@@ -41,13 +41,14 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>    
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#cloud-azure">Cloud in Azure</a>
     <li><a href="#azure-marketplace">Azure Marketplace</a>
     <li><a href="#azure-pricing">Azure Pricing</a>
     <li><a href="#azure-subscription">Azure Subscription</a>
     <li><a href="#azure-support">Azure Support</a>    
     <li><a href="#azure-compute">Azure Compute Services</a>
+    <li><a href="#azure-network">Azure Compute Services</a>
     <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -223,7 +224,7 @@ Example of Plain Migration
 
 ## Azure Compute Services
 
-<a name="about-the-project"></a>
+<a name="azure-compute"></a>
 
 ![Azure Compute Services](images/azure-compute-services.png)
 
@@ -233,6 +234,15 @@ Example of Plain Migration
 * Azure Functions
 
 <p align="right">(<a href="#azure-compute">back to azure-compute</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="azure-network"></a>
+
+## Azure Network
+
+
+
+<p align="right">(<a href="#azure-network">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Azure CLI
