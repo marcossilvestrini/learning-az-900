@@ -40,9 +40,6 @@ RUNTIMEWEBAPP="NODE:18-lts"
 OSTYPE="Linux"
 FUNCTIONNAME="FuncAz900"
 
-#(teste localhost:3000)
-#npm start &
-
 # Login i Azure Cloud
 LoginAzurePortal
 
@@ -89,86 +86,6 @@ else
     echo "----------------------------------------------------"
 fi
 
-# Create the web application on the plan
-# Specify the node version your app requires
-if [ "$(az webapp list -o table --query "[?name=='$APPNAME']")" = "" ]; then
-    if az webapp create \
-        --role "$ROLE" \
-        --name "$APPNAME" \
-        --plan "$PLANNAME" \
-        --resource-group "$RESOURCEGROUP" \
-        --runtime "$RUNTIMEWEBAPP"; then
-        echo "Webapp $APPNAME has create successfully!!"
-        echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else
-        echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard"
-        echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    fi
-else
-    echo "Webapp $APPNAME has create successfully!!"
-    echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
-    echo "----------------------------------------------------"
-fi
-
-# To set up deployment from a local git repository, uncomment the following commands.
-# first, set the username and password (use environment variables!)
-if [ "$(az webapp deployment user show | grep publishingUserName | cut -c 24-34)" != "$USERNAME" ];
-then
-    if az webapp deployment user set \
-        --user-name "$USERNAME" \
-        --password "$PASSWORD"; then
-        echo "Deployment user $USERNAME set with successful!!"
-        echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else
-        echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard"
-        echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    fi
-else
-    echo "Deployment user $USERNAME set with successful!!"
-    echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
-    echo "----------------------------------------------------"
-fi
-
-# # now, configure the site for deployment. in this case, we will deploy from the local git repository
-# # you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
-if [ "$(az webapp deployment source show --name $APPNAME --resource-group $RESOURCEGROUP 2>&1 | grep "Code: ResourceGroupNotFound")" != "" ];
-then
-    if az webapp deployment source config-local-git \
-        --name "$APPNAME" \
-        --resource-group "$RESOURCEGROUP"; then
-        echo "Deployment Source for site $APPNAME set with successful!!"
-        echo "Deployment Source for site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    else
-        echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard"
-        echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
-    fi
-else
-    echo "Deployment Source for Site $APPNAME set with successful!!"
-    echo "Deployment Source for Site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
-    echo "----------------------------------------------------"
-fi
-
-# Create Node App local for deploy in Azure App Service
-if [ -d "/opt/azure/app-services" ]; then
-    rm -rf /opt/azure/app-services
-fi
-mkdir -p /opt/azure/app-services
-npm config set prefix '/opt/azure/app-services'
-cd /opt/azure/app-services || exit
-npx --yes express-generator $APPNODENAME --view pug --git
-export PATH=/opt/azure/app-services/$APPNODENAME/bin:$PATH
-cd $APPNODENAME || exit
-npm install -y
-DATE=$(date '+%Y-%m-%d %H:%M:%S')
-sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD - MARCOS SILVESTRINI - $DATE /g" /opt/azure/app-services/$APPNODENAME/routes/index.js
-chmod 777 -R /opt/azure/app-services/$APPNODENAME/
-
 # Create a local Azure Function Project
 mkdir -p /opt/azure/app-services/$APPNODENAME/functions
 chmod 777 -R /opt/azure/app-services/$APPNODENAME
@@ -177,36 +94,127 @@ cd /opt/azure/app-services/$APPNODENAME/functions || exit
 func new --template "Http Trigger" --name "$FUNCTIONNAME" --authlevel "anonymous"
 func azure functionapp publish $FUNCTIONNAME
 
+# # Create the web application on the plan
+# # Specify the node version your app requires
+# if [ "$(az webapp list -o table --query "[?name=='$APPNAME']")" = "" ]; then
+#     if az webapp create \
+#         --role "$ROLE" \
+#         --name "$APPNAME" \
+#         --plan "$PLANNAME" \
+#         --resource-group "$RESOURCEGROUP" \
+#         --runtime "$RUNTIMEWEBAPP"; then
+#         echo "Webapp $APPNAME has create successfully!!"
+#         echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     else
+#         echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard"
+#         echo "Error in create webapp $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     fi
+# else
+#     echo "Webapp $APPNAME has create successfully!!"
+#     echo "Webapp $APPNAME has create successfully!!" >>"$LOGFUNCTIONS"
+#     echo "----------------------------------------------------"
+# fi
 
-# the previous command returned the git remote to deploy to
-# use this to set up a new remote named "azure"
-cd /opt/azure/app-services/$APPNODENAME || exit
-if [ -d ".git" ]; then
-    rm -rf .git
-fi
+# # To set up deployment from a local git repository, uncomment the following commands.
+# # first, set the username and password (use environment variables!)
+# if [ "$(az webapp deployment user show | grep publishingUserName | cut -c 24-34)" != "$USERNAME" ];
+# then
+#     if az webapp deployment user set \
+#         --user-name "$USERNAME" \
+#         --password "$PASSWORD"; then
+#         echo "Deployment user $USERNAME set with successful!!"
+#         echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     else
+#         echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard"
+#         echo "Error in Deployment user $USERNAME set. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     fi
+# else
+#     echo "Deployment user $USERNAME set with successful!!"
+#     echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
+#     echo "----------------------------------------------------"
+# fi
 
-git config --global --add safe.directory .
-git init 
-git config --global user.name "$USERNAME"
-git config --global user.mail "$USERNAME@outlook.com"
-git remote add origin "https://$USERNAME@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
-git remote set-url origin "https://$USERNAME:$PASSWORD@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
-git config credential.helper store;
+# # # now, configure the site for deployment. in this case, we will deploy from the local git repository
+# # # you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
+# if [ "$(az webapp deployment source show --name $APPNAME --resource-group $RESOURCEGROUP 2>&1 | grep "Code: ResourceGroupNotFound")" != "" ];
+# then
+#     if az webapp deployment source config-local-git \
+#         --name "$APPNAME" \
+#         --resource-group "$RESOURCEGROUP"; then
+#         echo "Deployment Source for site $APPNAME set with successful!!"
+#         echo "Deployment Source for site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     else
+#         echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard"
+#         echo "Error in Deployment Source for Site $APPNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+#         echo "----------------------------------------------------"
+#     fi
+# else
+#     echo "Deployment Source for Site $APPNAME set with successful!!"
+#     echo "Deployment Source for Site $APPNAME set with successful!!" >>"$LOGFUNCTIONS"
+#     echo "----------------------------------------------------"
+# fi
 
-# Add and Commit files
-git add .
-git commit -m "Deployment site $APPNAME"
+# # Create Node App local for deploy in Azure App Service
+# if [ -d "/opt/azure/app-services" ]; then
+#     rm -rf /opt/azure/app-services
+# fi
+# mkdir -p /opt/azure/app-services
+# npm config set prefix '/opt/azure/app-services'
+# cd /opt/azure/app-services || exit
+# npx --yes express-generator $APPNODENAME --view pug --git
+# export PATH=/opt/azure/app-services/$APPNODENAME/bin:$PATH
+# cd $APPNODENAME || exit
+# npm install -y
+# DATE=$(date '+%Y-%m-%d %H:%M:%S')
+# sed -i "s/Express/LAB AZ-900 - DEPLOY APP SERVICE IN AZURE CLOUD - MARCOS SILVESTRINI - $DATE /g" /opt/azure/app-services/$APPNODENAME/routes/index.js
+# chmod 777 -R /opt/azure/app-services/$APPNODENAME/
+#(teste localhost:3000)
+#npm start &
 
-# Push master to azure for deploy the site
-if git push -f origin master; then
-    echo "Set remote repository for deployment site $APPNAME with successful!!"
-    echo "Set remote repository for deployment site $APPNAME with successful!!" >>"$LOGFUNCTIONS"
-    echo "----------------------------------------------------"
-else
-    echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard"
-    echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-    echo "----------------------------------------------------"
-fi
+# # Create a local Azure Function Project
+# # https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4
+# mkdir -p /opt/azure/app-services/$APPNODENAME/functions
+# chmod 777 -R /opt/azure/app-services/$APPNODENAME
+# func init /opt/azure/app-services/$APPNODENAME/functions --model V4 --worker-runtime node
+# cd /opt/azure/app-services/$APPNODENAME/functions || exit
+# func new --template "Http Trigger" --name "$FUNCTIONNAME" --authlevel "anonymous"
+# func azure functionapp publish $FUNCTIONNAME
+
+
+# # the previous command returned the git remote to deploy to
+# # use this to set up a new remote named "azure"
+# cd /opt/azure/app-services/$APPNODENAME || exit
+# if [ -d ".git" ]; then
+#     rm -rf .git
+# fi
+
+# git config --global --add safe.directory .
+# git init 
+# git config --global user.name "$USERNAME"
+# git config --global user.mail "$USERNAME@outlook.com"
+# git remote add origin "https://$USERNAME@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
+# git remote set-url origin "https://$USERNAME:$PASSWORD@$APPNAME.scm.azurewebsites.net/$APPNAME.git"
+# git config credential.helper store;
+
+# # Add and Commit files
+# git add .
+# git commit -m "Deployment site $APPNAME"
+
+# # Push master to azure for deploy the site
+# if git push -f origin master; then
+#     echo "Set remote repository for deployment site $APPNAME with successful!!"
+#     echo "Set remote repository for deployment site $APPNAME with successful!!" >>"$LOGFUNCTIONS"
+#     echo "----------------------------------------------------"
+# else
+#     echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard"
+#     echo "Error in set remote repository for deployment site $APPNAME.Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+#     echo "----------------------------------------------------"
+# fi
 
 # browse to the site
 # az webapp browse --name $APPNAME --resource-group $RESOURCEGROUP
