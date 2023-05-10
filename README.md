@@ -240,7 +240,16 @@ Example of Plain Migration
 
 ## Azure Network
 
+![Azure Network](images/azure-network.jpg)
 
+### Some Important Features of Azure Network
+
+* Virtual Network
+* Load Balance
+* VPN Gateway
+* Application Gateway
+* Express Route
+* Content Delivery Network
 
 <p align="right">(<a href="#azure-network">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
