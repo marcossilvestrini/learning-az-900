@@ -2,18 +2,15 @@
     .Synopsis
         Script for up lab
     .DESCRIPTION
-        Script for up kubernets cluster for learning AZ-900 in Azure Cloud
+    Script for up virtual machine for learning AZ-900 in Azure Cloud
     .PREREQUISITES    
         ./azure-functions.sh
     .EXAMPLE
-        ./create-kubernets-app-az900.sh
+        ./create-vm.sh
 SCRIPT
 
 # Set language/locale and encoding
 export LANG=C
-
-# Clear screen
-clear
 
 cd /home/vagrant || exit
 
@@ -28,9 +25,17 @@ LOGFUNCTIONS="$DIR_PATH/azure-functions.log"
 source "$DIR_PATH/azure-functions.sh"
 
 # Variablçes
+JSON=security/.azure-secrets
+USERNAME=$(jq -r .username $JSON)
 RESOURCEGROUP="labs"
-NAME="app-az900"
 LOCATION="eastus"
+PRIORITY="Spot"
+IMAGE="Debian:debian-11:11-backports-gen2:latest"
+VMNAME="lab-az900"
+AUTHENTICATIONTYPE="all"
+SSHKEYNAME="id_rsa_$VMNAME"
+ADMINUSERNAME="vagrant"
+ADMINPASSWORD="Vagrant@123456"
 
 # Login i Azure Cloud
 LoginAzurePortal
@@ -40,7 +45,7 @@ if [ $(az group exists --name "$RESOURCEGROUP") = false ];
  then
     if az group create \
         --resource-group $RESOURCEGROUP \
-        --location $LOCATION;
+        --location $LOCATION >/dev/null;
     then
         echo "Ressource group $RESOURCEGROUP has create successfully!!"
         echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
@@ -56,25 +61,32 @@ else
     echo "----------------------------------------------------"
 fi
 
-# Create Kubernets Instance
-if [ "$(az aks show --name $NAME --resource-group $RESOURCEGROUP 2>&1 | grep dnsPrefix)" = "" ];
+# Create Virtual machine
+if [ "$(az vm list -d -o table --query "[?name=='$VMNAME']")" = "" ];
 then
-    if az aks create \
-        --name "$NAME" \
+    if az vm create \
         --resource-group "$RESOURCEGROUP" \
-        --generate-ssh-keys;
-    then
-        echo "Kubernets Cluster $NAME has create successfully!!"
-        echo "Kubernets Cluster $NAME has create successfully!!">>"$LOGFUNCTIONS"
-        echo "----------------------------------------------------"
+        --public-ip-sku Standard \
+        --image "$IMAGE" \
+        --name "$VMNAME" \
+        --computer-name "$VMNAME" \
+        --priority "$PRIORITY" \
+        --admin-username "$ADMINUSERNAME"  \
+        --admin-password "$ADMINPASSWORD" \
+        --generate-ssh-keys \
+        --ssh-key-name "$SSHKEYNAME" \
+        --authentication-type "$AUTHENTICATIONTYPE" >/dev/null;
+        then
+            echo "VM $VMNAME has create successfully!!"
+            echo "----------------------------------------------------"
     else 
-        echo "Error in create Kubernets Cluster $NAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
-        echo "Error in create Kubernets Cluster $NAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "Error in create VM $VMNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "Error in create VM $VMNAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     fi    
 else    
-    echo "Kubernets Cluster $NAME has create successfully!!"
-    echo "Kubernets Cluster $NAME has create successfully!!" >>"$LOGFUNCTIONS"
+    echo "VM $VMNAME has create successfully!!"
+    echo "VM $VMNAME has create successfully!!" >>"$LOGFUNCTIONS"
     echo "----------------------------------------------------"
 fi
 

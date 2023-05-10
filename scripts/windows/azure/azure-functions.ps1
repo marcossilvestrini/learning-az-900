@@ -22,7 +22,7 @@ $basepath = (($scriptPath | Split-Path -Parent) | Split-Path -Parent) | Split-Pa
 # Log for functions
 $logFunctions = "$scriptPath\azure-functions.log"
 Out-File $logFunctions 
-"###############Begin Log ###################" >>$logFunctions
+"############### Begin Log ###################" >>$logFunctions
 $date = "Date: " + (get-date).ToString("dd-MM-yyyy HH:mm:ss")
 $date >>$logFunctions
 
@@ -51,10 +51,11 @@ Function Install-CLI {
 # Login-AzurePortal
 Function LoginAzurePortal {
    # Use az cli   
-   az login --service-principal `
+   az login --only-show-errors `
+      --service-principal `
       --username $json.clientId `
       --password $json.clientSecret `
-      --tenant $json.tenantId >$null
+      --tenant $json.tenantId
    
    # Use Azure Powershell
    <#
@@ -81,7 +82,8 @@ Function LoginAzurePortal {
 
 # Functio for logout in Azure Portal
 Function LogoutAzurePortal{    
-   az logout --username $json.username
+   az logout --only-show-errors `
+      --username $json.username
    if ($?) { 
       Write-Host -ForegroundColor Green "Logout Azure Cloud Successfully!!"
       "Logout Azure Cloud Successfully!!" >> $logFunctions
@@ -92,4 +94,5 @@ Function LogoutAzurePortal{
       "Error in create VM $VMNAME. Please check in your Azure Dashboard" >> $logFunctions
       Write-Host "----------------------------------------------------"
    }
+   "############### End Log ###################" >>$logFunctions
 }

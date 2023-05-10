@@ -53,7 +53,8 @@ if [ $(az group exists --name "$RESOURCEGROUP") = false ]; then
     if az group create \
         --resource-group $RESOURCEGROUP \
         --location $LOCATION \
-        --tags $TAG >/dev/null; then
+        --tags $TAG >/dev/null;
+    then
         echo "Ressource group $RESOURCEGROUP has create successfully!!"
         echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"

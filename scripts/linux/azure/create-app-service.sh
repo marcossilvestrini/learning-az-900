@@ -8,7 +8,7 @@
     .PREREQUISITES    
         ./azure-functions.sh
     .EXAMPLE
-        ./create-app-az900.sh
+        ./create-app-service.sh
 SCRIPT
 
 # Set language/locale and encoding
@@ -62,9 +62,9 @@ LoginAzurePortal
 # Create resource group
 if [ $(az group exists --name "$RESOURCEGROUP") = false ];
  then
-    if az group create \
+    if az group create --only-show-errors \
         --resource-group $RESOURCEGROUP \
-        --location $LOCATION;
+        --location $LOCATION >/dev/null;
     then
         echo "Ressource group $RESOURCEGROUP has create successfully!!"
         echo "Ressource group $RESOURCEGROUP has create successfully!!" >>"$LOGFUNCTIONS"
@@ -83,12 +83,12 @@ fi
 # Create Appservice Plan
 if [ "$(az appservice plan list -o table  --query "[?name=='$PLANNAME']")" = "" ];
 then
-    if az appservice plan create \
+    if az appservice plan create --only-show-errors \
     --is-linux \
     --name $PLANNAME \
     --location $LOCATION \
     --sku $PLANSKU \
-    --resource-group $RESOURCEGROUP;
+    --resource-group $RESOURCEGROUP >/dev/null;
     then
         echo "Appservice Plan $PLANNAME has create successfully!!"
         echo "Appservice Plan $PLANNAME has create successfully!!" >>"$LOGFUNCTIONS"
@@ -108,12 +108,12 @@ fi
 # Specify the node version your app requires
 if [ "$(az webapp list -o table  --query "[?name=='$SITENAME']")" = "" ];
 then
-    if az webapp create \
+    if az webapp create --only-show-errors \
     --role $ROLE \
     --name $SITENAME \
     --plan $PLANNAME \
     --resource-group $RESOURCEGROUP \
-    --runtime $RUNTIME;
+    --runtime $RUNTIME  >/dev/null;
     then
         echo "Webapp $SITENAME has create successfully!!"
         echo "Webapp $SITENAME has create successfully!!" >>"$LOGFUNCTIONS"
@@ -131,9 +131,9 @@ fi
 
 # To set up deployment from a local git repository, uncomment the following commands.
 # first, set the username and password (use environment variables!)
-if az webapp deployment user set \
+if az webapp deployment user set --only-show-errors \
      --user-name "$USERNAME" \
-     --password "$PASSWORD";
+     --password "$PASSWORD" >/dev/null;
     then
         echo "Deployment user $USERNAME set with successful!!"
         echo "Deployment user $USERNAME set with successful!!" >>"$LOGFUNCTIONS"
@@ -146,9 +146,9 @@ fi
 
 # now, configure the site for deployment. in this case, we will deploy from the local git repository
 # you can also configure your site to be deployed from a remote git repository or set up a CI/CD workflow
-if az webapp deployment source config-local-git \
+if az webapp deployment source config-local-git --only-show-errors \
     --name $SITENAME \
-    --resource-group $RESOURCEGROUP;
+    --resource-group $RESOURCEGROUP >/dev/null;
     then
         echo "Deployment site $SITENAME set with successful!!"
         echo  "Deployment site $SITENAME set with successful!!" >>"$LOGFUNCTIONS"

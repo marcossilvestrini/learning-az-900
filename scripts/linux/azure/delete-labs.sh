@@ -6,7 +6,7 @@
     .PREREQUISITES    
         ./azure-functions.sh
     .EXAMPLE
-        ./up-lab-az900.sh
+        ./delete-lab.sh
 SCRIPT
 
 # Set language/locale and encoding

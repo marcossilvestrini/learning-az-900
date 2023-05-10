@@ -46,9 +46,10 @@
     <li><a href="#azure-marketplace">Azure Marketplace</a>
     <li><a href="#azure-pricing">Azure Pricing</a>
     <li><a href="#azure-subscription">Azure Subscription</a>
-    <li><a href="#azure-support">Azure Support</a>    
+    <li><a href="#azure-support">Azure Support</a>
     <li><a href="#azure-compute">Azure Compute Services</a>
     <li><a href="#azure-network">Azure Compute Services</a>
+    <li><a href="#azure-storage">Azure Compute Services</a>
     <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -175,6 +176,9 @@ One major benefit of using Azure as a foundation for your SaaS apps is that it l
 <a name="azure-marketplace"></a>
 
 ![Azure Marketplace](images/azure-marktplace.png)
+https://learn.microsoft.com/en-us/marketplace/azure-marketplace-overview
+
+Azure Marketplace is an online store that contains thousands of IT software applications and services built by industry-leading technology companies. In Azure Marketplace you can find, try, buy, and deploy the software and services you need to build new solutions and manage your cloud infrastructure
 
 <p align="right">(<a href="#azure-marketplace">back to cloud azure-marketplace</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -182,6 +186,7 @@ One major benefit of using Azure as a foundation for your SaaS apps is that it l
 ## Azure Pricing
 
 <a name="azure-pricing"></a>
+https://azure.microsoft.com/en-us/pricing/
 
 ### Compute
 
@@ -227,8 +232,9 @@ Example of Plain Migration
 <a name="azure-compute"></a>
 
 ![Azure Compute Services](images/azure-compute-services.png)
+https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree
 
-### Some Important Features
+### Some Important Features of Azure Compute
 
 * Virtual Machine Scale Set
 * Azure Functions
@@ -252,6 +258,33 @@ Example of Plain Migration
 * Content Delivery Network
 
 <p align="right">(<a href="#azure-network">back to azure-compute</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="azure-storage"></a>
+
+## Azure Storage
+
+![Azure Storage](images/azure-storage.jpg)
+
+### Azure Storage redundancy
+
+#### Locally redundant storage
+
+![Azure Storage LRS](images/azure-storage-LRS.jpg)
+
+#### Zone-redundant storage
+
+![Azure Storage ZRS](images/azure-storage-ZRS.jpg)
+
+#### Geo-redundant storage
+
+![Azure Storage ZRS](images/azure-storage-GRS.jpg)
+
+#### Geo-zone-redundant storage
+
+![Azure Storage ZRS](images/azure-storage-GZRS.jpg)
+
+<p align="right">(<a href="#azure-storage">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Azure CLI

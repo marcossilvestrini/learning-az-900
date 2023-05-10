@@ -8,7 +8,7 @@
     .PREREQUISITES    
         ./azure-functions.sh
     .EXAMPLE
-        ./create-vnet-az900.sh
+        ./create-vnet.sh
 SCRIPT
 
 # Clear screen
@@ -63,7 +63,7 @@ else
     echo "----------------------------------------------------"
 fi
 
-# Create resource group
+# Create virtual network
 if [ "$(az network vnet list -o table --query "[?contains(addressSpace.addressPrefixes, '10.0.0.0/16')]")" = "" ];
 then
     if az network vnet create \
