@@ -284,6 +284,14 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 
 ![Azure Storage ZRS](images/azure-storage-GZRS.jpg)
 
+### Some Important Features of Azure Storage
+
+* Blob
+* Disk
+* File
+* Archive
+* Table
+
 <p align="right">(<a href="#azure-storage">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
