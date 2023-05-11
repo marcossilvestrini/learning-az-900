@@ -50,6 +50,7 @@
     <li><a href="#azure-compute">Azure Compute Services</a>
     <li><a href="#azure-network">Azure Compute Services</a>
     <li><a href="#azure-storage">Azure Compute Services</a>
+        <li><a href="#azure-database">Azure Compute Services</a>
     <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -291,9 +292,37 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 * File
 * Archive
 * Table
+* Access Tiers
+  * Hot
+  * Coll
+  * Archive
 
 <p align="right">(<a href="#azure-storage">back to azure-compute</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Database
+
+![Azure Database](images/azure-database.jpg)
+
+### Some Important Features of Azure Database
+
+* Cosmos DB
+* Azure SQL
+* MySQL
+* PostgreSQL
+* Database Migration Service
+
+### Elements in an Azure Cosmos DB account
+
+![Azure Database Account](images/azure-cosmos-database-account.jpg)
+https://learn.microsoft.com/en-us/azure/cosmos-db/resource-model
+
+<p align="right">(<a href="#azure-database">back to azure-compute</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="azure-storage"></a>
+
+## Azure Storage
 
 ## Azure CLI
 
@@ -425,6 +454,7 @@ Project Link: [https://github.com/marcossilvestrini/learning-az-900](https://git
 * [Azure VM Size](https://docs.microsoft.com/pt-br/azure/virtual-machines/sizes)
 * [Alura Course](https://www.alura.com.br/formacao-certificacao-az-900-microsoft-azure-fundamentals)
 * [Simulated](https://www.itexams.com/exam/AZ-900)
+* [Azure Cli Query](https://www.thorsten-hans.com/master-azure-cli-queries-the-missing-manual/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

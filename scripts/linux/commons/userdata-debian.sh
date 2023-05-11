@@ -35,7 +35,7 @@ apt-get install -y tcpdump
 apt-get install -y sysstat
 apt-get install -y htop
 apt-get install -y collectd
-apt-get install -y smbclient
+apt-get install -y samba smbclient
 apt-get install -y cifs-utils
 apt-get install -y nmap
 
