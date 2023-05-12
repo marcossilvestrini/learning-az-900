@@ -47,10 +47,12 @@
     <li><a href="#azure-pricing">Azure Pricing</a>
     <li><a href="#azure-subscription">Azure Subscription</a>
     <li><a href="#azure-support">Azure Support</a>
-    <li><a href="#azure-compute">Azure Compute Services</a>
-    <li><a href="#azure-network">Azure Compute Services</a>
-    <li><a href="#azure-storage">Azure Compute Services</a>
-        <li><a href="#azure-database">Azure Compute Services</a>
+    <li><a href="#azure-compute">Azure Compute</a>
+    <li><a href="#azure-network">Azure Network</a>
+    <li><a href="#azure-storage">Azure Storage</a>
+    <li><a href="#azure-database">Azure Database</a>
+    <li><a href="#azure-solutions">Azure Solutions</a>
+    <li><a href="#azure-security">Azure Security</a>
     <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -212,9 +214,8 @@ Example of Plain Migration
 
 <a name="azure-subscription"></a>
 
-<https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions>
-
 ![Azure Resources](images/azure-subscriptions.jpg)
+<https://www.alifconsulting.com/post/understand-azure-resource-organization-in-multitenant-solutions>
 
 <p align="right">(<a href="#azure-subscriptions">back to cloud azure-subscriptions</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -249,6 +250,8 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 
 ![Azure Network](images/azure-network.jpg)
 
+https://learn.microsoft.com/en-us/azure/networking/fundamentals/networking-overview
+
 ### Some Important Features of Azure Network
 
 * Virtual Network
@@ -266,6 +269,8 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 ## Azure Storage
 
 ![Azure Storage](images/azure-storage.jpg)
+
+https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 
 ### Azure Storage redundancy
 
@@ -305,14 +310,18 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 <a name="azure-database"></a>
 
 ![Azure Database](images/azure-database.jpg)
-
+https://azure.microsoft.com/en-us/products/category/databases#:~:text=Azure%20offers%20a%20choice%20of,saving%20you%20time%20and%20money.
 ### Some Important Features of Azure Database
 
 * Cosmos DB
 * Azure SQL
+  * Azure SQL Database
+  * Azure SQL Managed Instance
+  * Azure Server on Azure Virtual Machine
 * MySQL
 * PostgreSQL
 * Database Migration Service
+* Data Migration Assistant
 
 ### Elements in an Azure Cosmos DB account
 
@@ -321,6 +330,45 @@ https://learn.microsoft.com/en-us/azure/cosmos-db/resource-model
 
 <p align="right">(<a href="#azure-database">back to azure-database</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Solutions
+
+<a name="azure-solutions"></a>
+
+![Azure Solutions](images/azure-solutions.jpg)
+https://azure.microsoft.com/en-us/solutions/
+
+### Some Important Features of Azure Solutions
+
+* Internet of Things
+* Big Data
+* DevOPs
+
+### Azure DevOPs
+
+https://azure.microsoft.com/en-us/products/devops/
+
+* Azure Boards
+* Azure Pipelines
+* Azure Repos
+* Azure Test Plan
+* Azure Artifacts
+
+<p align="right">(<a href="#azure-database">back to azure-solutions</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Azure Security
+
+<a name="azure-security"></a>
+
+![Azure Security](images/azure-security.jpg)
+
+https://azure.microsoft.com/en-us/explore/security
+
+<p align="right">(<a href="#azure-database">back to azure-security</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Azure CLI
 

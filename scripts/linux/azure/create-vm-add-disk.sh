@@ -164,7 +164,7 @@ fi
 echo "Format and Mount Disk $DISKNAME in VM $VMNAME."
 echo "Format and Mount Disk $DISKNAME in VM $VMNAME." >>"$LOGFUNCTIONS"
 VMPUBLICIP=$(az vm show -d --resource-group $RESOURCEGROUP --name $VMNAME --query publicIps -o tsv)
-ssh  < ./scripts/linux/azure/format-vm-disk.sh vagrant@$VMPUBLICIP "bash -s -- '<--time bye>' '<end>'"
+ssh -o StrictHostKeyChecking=no  < ./scripts/linux/azure/format-vm-disk.sh vagrant@$VMPUBLICIP "bash -s -- '<--time bye>' '<end>'"
 
 # Logout in Azure Cloud
 LogoutAzurePortal
