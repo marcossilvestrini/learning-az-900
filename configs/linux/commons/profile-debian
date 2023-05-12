@@ -38,6 +38,3 @@ sudo timedatectl set-timezone America/Sao_Paulo
 
 # Install vscode extencions
 code /home/vagrant --install-extension ms-vscode.vscode-node-azure-pack
-
-# Export SQL tools
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"'
