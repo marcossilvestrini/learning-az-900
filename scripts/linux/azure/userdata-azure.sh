@@ -18,6 +18,7 @@ DISTRO=$(cat /etc/*release | grep -ws NAME=)
 apt install -y nodejs npm
 apt install -y jq
 
+
 # Check if distribution is Debian
 if [[ "$DISTRO" == *"Debian"* ]]; then    
     echo "Distribution is Debian...Congratulations!!!"
@@ -62,6 +63,13 @@ apt update -y && apt install -y powershell
 
 # Install Azure Powershell
 pwsh -Command "Install-Module -Name Az -Repository PSGallery -Force"
+
+# Installing MSSQL Tools
+echo "deb [signed-by=/usr/share/keyrings/microsoft.gpg arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod focal main" | \
+    tee /etc/apt/sources.list.d/prod.list
+apt update -y
+apt install -y  mssql-tools unixodbc-dev
+
 
 # Install VScode
 apt-get install wget gpg apt-transport-https

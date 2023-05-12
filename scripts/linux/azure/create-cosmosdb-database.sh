@@ -70,7 +70,6 @@ then
     if az cosmosdb create \
         --resource-group "$RESOURCEGROUP" \
         --name "$COSMOSACCOUNT" \
-        --localtion "$LOCATION" \
         --tags "$TAG" \
         --output none;
     then
@@ -78,8 +77,8 @@ then
         echo "Cosmos DB Account $COSMOSACCOUNT has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     else
-        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard"
-        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "Cosmos DB Account $COSMOSACCOUNT. Please check in your Azure Dashboard"
+        echo "Cosmos DB Account $COSMOSACCOUNT. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     fi
 else
@@ -92,17 +91,17 @@ fi
 if [ $(az cosmosdb sql database exists --account-name $COSMOSACCOUNT --name $COSMOSDATABASENAME --resource-group $RESOURCEGROUP) = false ];
 then
     if az cosmosdb sql database create \
-        --name "$COSMOSACCOUNT" \
         --resource-group "$RESOURCEGROUP" \
-        --db-name "$COSMOSDATABASENAME" \
+        --account-name "$COSMOSACCOUNT" \
+        --name "$COSMOSDATABASENAME" \
         --output none;
     then
         echo "Cosmos Database SQL $COSMOSDATABASENAME has create successfully!!"
         echo "Cosmos Database SQL $COSMOSDATABASENAME has create successfully!!" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     else
-        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard"
-        echo "Error in create group $RESOURCEGROUP. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
+        echo "Cosmos Database SQL $COSMOSDATABASENAME. Please check in your Azure Dashboard"
+        echo "Cosmos Database SQL $COSMOSDATABASENAME. Please check in your Azure Dashboard" >>"$LOGFUNCTIONS"
         echo "----------------------------------------------------"
     fi
 else
@@ -119,7 +118,7 @@ then
         --account-name "$COSMOSACCOUNT" \
         --database-name "$COSMOSDATABASENAME" \
         --name "$COSMOSCONTEINERNAME" \
-        --partition-key-path "/command/example" \
+        --partition-key-path "/commandName/example" \
         --output none;
     then
         echo "Cosmos SQL Conteiner $COSMOSCONTEINERNAME has create successfully!!"
@@ -137,7 +136,9 @@ else
 fi
 
 # Insert item in cosmos sql conteiner
+
 # https://azuresdkdocs.blob.core.windows.net/$web/python/azure-cosmos/4.0.0b5/index.html#create-client
+# https://azuresdkdocs.blob.core.windows.net/$web/python/azure-cosmos/4.0.0b5/index.html#insert-data
 
 # Configure env variables for python
 export ACCOUNT_URI=$(az cosmosdb show --resource-group $RESOURCEGROUP --name $COSMOSACCOUNT --query documentEndpoint --output tsv)
@@ -150,12 +151,18 @@ pip install --upgrade pyinstaller >/dev/null
 # Configure python
 #python3 -m venv azure-cosmosdb-sdk-environment
 #source azure-cosmosdb-sdk-environment/bin/activate
-dos2unix scripts/python/insert-itemcosmos-container.py
-chmod +x scripts/python/insert-itemcosmos-container.py
+dos2unix -q scripts/python/insert-item-cosmos-container.py
+dos2unix -q scripts/python/list-item-cosmos-container.py
+chmod +x scripts/python/insert-item-cosmos-container.py
+chmod +x scripts/python/list-item-cosmos-container.py
 
-## Insert item
-#https://azuresdkdocs.blob.core.windows.net/$web/python/azure-cosmos/4.0.0b5/index.html#insert-data
-./scripts/python/insert-itemcosmos-container.py
+## Insert items in Cosmos Database Container
+echo "Insert items in Cosmos SQL Conteiner $COSMOSCONTEINERNAME for test" >>"$LOGFUNCTIONS"
+./scripts/python/insert-item-cosmos-container.py
+
+## Check items in Cosmos Database Container
+echo "Check items in Cosmos SQL Conteiner $COSMOSCONTEINERNAME for test" >>"$LOGFUNCTIONS"
+./scripts/python/list-item-cosmos-container.py
 
 # Logout in Azure Cloud
 LogoutAzurePortal

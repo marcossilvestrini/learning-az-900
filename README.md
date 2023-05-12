@@ -297,10 +297,12 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
   * Coll
   * Archive
 
-<p align="right">(<a href="#azure-storage">back to azure-compute</a>)</p>
+<p align="right">(<a href="#azure-storage">back to azure-storage</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Azure Database
+
+<a name="azure-database"></a>
 
 ![Azure Database](images/azure-database.jpg)
 
@@ -317,12 +319,8 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/co
 ![Azure Database Account](images/azure-cosmos-database-account.jpg)
 https://learn.microsoft.com/en-us/azure/cosmos-db/resource-model
 
-<p align="right">(<a href="#azure-database">back to azure-compute</a>)</p>
+<p align="right">(<a href="#azure-database">back to azure-database</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<a name="azure-storage"></a>
-
-## Azure Storage
 
 ## Azure CLI
 
@@ -411,7 +409,7 @@ az vm list-ip-addresses -g labs -n lab-az900
 
 ```
 
-<p align="right">(<a href="#azurecli">back to azure cli</a>)</p>
+<p align="right">(<a href="#azurecli">back to azurecli</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
