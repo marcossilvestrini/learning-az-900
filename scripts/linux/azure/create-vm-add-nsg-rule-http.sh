@@ -136,7 +136,7 @@ else
     echo "----------------------------------------------------"
 fi
 
-# Create http nsg
+# Create http NSG
 # https://www.jhanley.com/blog/azure-update-network-security-group-rule-with-my-ip-address/
 # NSGHTTP="az900-http"
 

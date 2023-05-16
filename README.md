@@ -53,6 +53,8 @@
     <li><a href="#azure-database">Azure Database</a>
     <li><a href="#azure-solutions">Azure Solutions</a>
     <li><a href="#azure-security">Azure Security</a>
+    <li><a href="#azure-ad">Azure Active Directory</a>
+    <li><a href="#azure-ad">Azure Monitor</a>
     <li><a href="#azurecli">Azure CLI</a>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -311,6 +313,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 
 ![Azure Database](images/azure-database.jpg)
 https://azure.microsoft.com/en-us/products/category/databases#:~:text=Azure%20offers%20a%20choice%20of,saving%20you%20time%20and%20money.
+
 ### Some Important Features of Azure Database
 
 * Cosmos DB
@@ -336,6 +339,7 @@ https://learn.microsoft.com/en-us/azure/cosmos-db/resource-model
 <a name="azure-solutions"></a>
 
 ![Azure Solutions](images/azure-solutions.jpg)
+
 https://azure.microsoft.com/en-us/solutions/
 
 ### Some Important Features of Azure Solutions
@@ -354,9 +358,8 @@ https://azure.microsoft.com/en-us/products/devops/
 * Azure Test Plan
 * Azure Artifacts
 
-<p align="right">(<a href="#azure-database">back to azure-solutions</a>)</p>
+<p align="right">(<a href="#azure-solutions">back to azure-solutions</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Azure Security
 
@@ -366,9 +369,42 @@ https://azure.microsoft.com/en-us/products/devops/
 
 https://azure.microsoft.com/en-us/explore/security
 
-<p align="right">(<a href="#azure-database">back to azure-security</a>)</p>
+### Some Important Features of Azure Security
+
+* Azure Security Center
+* Azure DDos Protection
+* Azure Defender
+* Azure Key Valts
+* Azure Information Protection (AIP)
+* Azure Thread Protection
+* Azure Sentinel
+
+<p align="right">(<a href="#azure-security">back to azure-security</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Azure Active Directory
+
+<a name="azure-ad"></a>
+
+![Azure Security](images/azure-AD.jpg)
+
+### Some Important Features of Azure Active Directory
+
+* RBAC
+* Groups,Users,Roles
+* MFA
+
+<p align="right">(<a href="#azure-ad">back to azure-ad</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Azure Monitor
+
+<a name="azure-monitor"></a>
+
+![Azure Security](images/azure-monitor.jpg)
+
+<p align="right">(<a href="#azure-monitor">back to azure-monitor</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Azure CLI
 
