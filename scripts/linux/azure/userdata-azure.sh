@@ -2,7 +2,7 @@
 
 <<'MULTILINE-COMMENT'
     Requirments: none
-    Description: Script for generate certificates for apache
+    Description: Script for install and configure Azure Tools and some packages for labs.
     Author: Marcos Silvestrini
     Date: 18/04/2023
 MULTILINE-COMMENT
@@ -14,11 +14,6 @@ cd /home/vagrant || exit
 # Variables
 DISTRO=$(cat /etc/*release | grep -ws NAME=)
 
-# install Common Packages
-apt install -y nodejs npm
-apt install -y jq
-
-
 # Check if distribution is Debian
 if [[ "$DISTRO" == *"Debian"* ]]; then    
     echo "Distribution is Debian...Congratulations!!!"
@@ -26,10 +21,13 @@ else
     echo "This script is not available for RPM distributions!!!";exit 1;
 fi
 
+# Install packages
+apt install -y jq
+
 # Install Node.js
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 apt update -y
-apt install -y nodejs
+apt install -y nodejs npm
 
 # Install Azure CLI
 
