@@ -12,7 +12,7 @@
 
 # LEARNING AZ-900
 
-![202-450 Linux Engineer](images/azure-roadmap.jpg)
+![AZ900](images/azure-roadmap.jpg)
 
 <p align="center">
 <strong>Explore the docs »</strong></a><br />
