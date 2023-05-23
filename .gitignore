@@ -10,7 +10,8 @@
 **/*.ppk
 **/*private*
 !Klpic2.com.br.+013+29838.private
-.azure-secrets
+security/*
+!security/README.md
 
 #Apps
 *.exe
