@@ -386,7 +386,7 @@ https://azure.microsoft.com/en-us/explore/security
 
 <a name="azure-ad"></a>
 
-![Azure Security](images/azure-AD.jpg)
+![Azure Active Directory](images/azure-ad.jpg)
 
 ### Some Important Features of Azure Active Directory
 
