@@ -16,6 +16,9 @@ Add-Content -Path $file -Value "Start Trigger Pipelines..."
 $start = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 Add-Content -Path $file -Value $start
 Set-Location $repository
+git config --global --add safe.directory F:/CERTIFICACAO/AZ-900
+git config --global user.email "marcos.silvestrini@gmail.com"
+git config --global user.name "marcos.silvestrini"
 git add .
 git commit -m "Start Pepilines"
 git push origin main
